@@ -4,6 +4,7 @@
   padding-bottom: 50px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: nowrap;
 }
 .profile__info-photo-portrait {
@@ -19,16 +20,42 @@
   max-height: 120px;
 }
 .profile__info {
-  align-items: center;
   display: flex;
+  align-items: center;
+}
+.profile__content {
 }
 .profile__info-name {
+  margin: 0px;
+  font-size: 42px;
+  font-weight: 500;
   color: #fff;
 }
 .profile__info-bio {
+  padding-top: 16px;
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 400;
   color: #fff;
 }
 .button__open-form {
+  all: unset;
+  background-color: #000;
+  border: 1px solid #fff;
+  max-height: 24px;
+  margin-left: 18px;
+  align-self: flex-start;
+  margin-top: 30px;
+}
+.button__open-form-img {
+  max-width: 10px;
+  max-height: 10px;
+  padding: 7px;
 }
 .button__add-post {
+  all: unset;
+  background-color: black;
+  border: 2px solid #fff;
+  padding: 14px 64px;
+  max-height: 22px;
 }
