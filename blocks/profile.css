@@ -108,13 +108,14 @@
   }
   .profile__info-name {
     font-size: 22px;
+    max-width: 200px;
   }
   .profile__info-bio {
     font-size: 14px;
     text-align: center;
     padding-top: 14px;
     padding-bottom: 36px;
-    max-width: 300px;
+    max-width: 200px;
   }
   .button__add-post {
     padding: 14px 45.5%;
