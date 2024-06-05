@@ -34,6 +34,10 @@
   font-size: 42px;
   font-weight: 500;
   color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 450px;
 }
 .profile__info-bio {
   padding-top: 16px;
@@ -41,6 +45,10 @@
   font-size: 18px;
   font-weight: 400;
   color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 450px;
 }
 .button__open-form {
   all: unset;
@@ -73,10 +81,14 @@
 @media screen and (max-width: 840px) {
   .profile__info-name {
     font-size: 30px;
+    max-width: 300px;
+  }
+  .profile__info-bio {
+    max-width: 300px;
   }
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 725px) {
   .profile {
     flex-direction: column;
     padding-top: 42px;
@@ -102,6 +114,7 @@
     text-align: center;
     padding-top: 14px;
     padding-bottom: 36px;
+    max-width: 300px;
   }
   .button__add-post {
     padding: 14px 45.5%;
