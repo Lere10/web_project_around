@@ -1,6 +1,6 @@
 let profile = document.querySelector(".profile");
 
-let buttonOpenForm = profile.querySelector(".button__open-form");
+let buttonOpenForm = profile.querySelector(".profile__button-open-form");
 let popup = document.querySelector(".popup");
 let closePopup = popup.querySelector(".popup__closer");
 let submitButton = popup.querySelector(".form__button");

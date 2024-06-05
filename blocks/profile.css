@@ -50,30 +50,30 @@
   overflow: hidden;
   max-width: 450px;
 }
-.button__open-form {
+.profile__button-open-form {
   all: unset;
   background-color: #000;
   border: 1px solid #fff;
   max-height: 24px;
   margin-left: 18px;
 }
-.button__open-form:hover {
+.profile__button-open-form:hover {
   opacity: 0.6;
   cursor: pointer;
 }
-.button__open-form-img {
+.profile__button-open-form-img {
   max-width: 10px;
   max-height: 10px;
   padding: 7px;
 }
-.button__add-post {
+.profile__button-add-post {
   all: unset;
   background-color: black;
   border: 2px solid #fff;
   padding: 14px 64px;
   max-height: 22px;
 }
-.button__add-post:hover {
+.profile__button-add-post:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -117,11 +117,11 @@
     padding-bottom: 36px;
     max-width: 200px;
   }
-  .button__add-post {
+  .profile__button-add-post {
     padding: 14px 45.5%;
     margin: 0px;
   }
-  .button__add-post-img {
+  .profile__button-add-post-img {
     margin: 0px;
     max-width: 16px;
   }
