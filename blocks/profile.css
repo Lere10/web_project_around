@@ -49,6 +49,10 @@
   max-height: 24px;
   margin-left: 18px;
 }
+.button__open-form:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
 .button__open-form-img {
   max-width: 10px;
   max-height: 10px;
@@ -61,6 +65,10 @@
   padding: 14px 64px;
   max-height: 22px;
 }
+.button__add-post:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 840px) {
   .profile__info-name {
@@ -70,19 +78,38 @@
 
 @media screen and (max-width: 690px) {
   .profile {
-    display: block;
+    flex-direction: column;
     padding-top: 42px;
+    padding-bottom: 36px;
+  }
+  .profile__info-photo-portrait {
+    margin: 0 auto;
   }
   .profile__info {
-    display: block;
+    flex-direction: column;
+    justify-content: center;
     margin: 0 auto;
     max-width: 282px;
+  }
+  .profile__info-content {
+    padding-top: 30px;
   }
   .profile__info-name {
     font-size: 22px;
   }
   .profile__info-bio {
     font-size: 14px;
+    text-align: center;
     padding-top: 14px;
+    padding-bottom: 36px;
+  }
+  .button__add-post {
+    padding: 14px 45.5%;
+    margin: 0px;
+  }
+  .button__add-post-img {
+    margin: 0px;
+    position: center;
+    max-width: 16px;
   }
 }

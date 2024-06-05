@@ -40,6 +40,10 @@
   max-width: 21px;
   width: 100%;
 }
+.grid__content-like:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 1040px) {
   .grid {
@@ -47,5 +51,12 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     max-width: 581px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    max-width: 282px;
   }
 }
