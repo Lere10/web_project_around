@@ -21,10 +21,13 @@ closePopup.addEventListener("click", popupState);
 function changeProfile(evt) {
   evt.preventDefault();
 
-  profileName.textContent = inputName.value;
   profileBio.textContent = inputBio.value;
-
-  popupState();
+  if (inputName.value === "") {
+    popupState();
+  } else {
+    profileName.textContent = inputName.value;
+    popupState();
+  }
 }
 
 submitButton.addEventListener("click", changeProfile);
