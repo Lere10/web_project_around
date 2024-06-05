@@ -31,7 +31,7 @@
 .popup__title {
   margin: 0px auto;
   font-size: 24px;
-  font-weight: 900px;
+  font-weight: 900;
   padding-top: 34px;
   padding-bottom: 41px;
   max-width: 358px;
@@ -82,7 +82,6 @@
   opacity: 0.8;
 }
 
-/*-------------------------------------------------------------*/
 .popup_opened {
   display: flex;
 }
