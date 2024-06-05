@@ -40,3 +40,12 @@
   max-width: 21px;
   width: 100%;
 }
+
+@media screen and (max-width: 1040px) {
+  .grid {
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    max-width: 581px;
+  }
+}

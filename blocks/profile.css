@@ -23,8 +23,7 @@
   display: flex;
   align-items: center;
 }
-.profile__content {
-}
+
 .profile__info-name {
   margin: 0px;
   font-size: 42px;
@@ -58,4 +57,29 @@
   border: 2px solid #fff;
   padding: 14px 64px;
   max-height: 22px;
+}
+
+@media screen and (max-width: 840px) {
+  .profile__info-name {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .profile {
+    display: block;
+    padding-top: 42px;
+  }
+  .profile__info {
+    display: block;
+    margin: 0 auto;
+    max-width: 282px;
+  }
+  .profile__info-name {
+    font-size: 22px;
+  }
+  .profile__info-bio {
+    font-size: 14px;
+    padding-top: 14px;
+  }
 }
