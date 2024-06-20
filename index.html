@@ -32,6 +32,39 @@
           </form>
         </div>
       </section>
+
+      <section class="popup__add-post">
+        <div class="popup__container">
+          <img
+            src="./images/popup__closeicon.png"
+            alt="Ícone para fechar popup"
+            class="popup__closer"
+          />
+          <h2 class="popup__title">New Place</h2>
+          <form class="form popup__form">
+            <fieldset class="form__fieldset">
+              <input
+                type="text"
+                id="title"
+                class="form__input form__input-name"
+                placeholder="Title"
+                name="title"
+                required
+              />
+              <input
+                type="text"
+                id="imageURL"
+                class="form__input form__input-bio"
+                name="imageLink"
+                placeholder="Image URL"
+                required
+              />
+            </fieldset>
+            <button type="submit" class="form__button">Salvar</button>
+          </form>
+        </div>
+      </section>
+
       <div class="page__content">
         <header class="header">
           <img
