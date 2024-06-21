@@ -11,7 +11,7 @@ let profileName = profile.querySelector(".profile__info-name");
 let profileBio = profile.querySelector(".profile__info-bio");
 
 const addPostButton = profile.querySelector(".profile__button-add-post");
-const popupAddPost = document.querySelector(".popup__add-post");
+const popupAddPost = document.querySelector(".popup__addpost");
 const closePopupPost = popupAddPost.querySelector(".popup__closer");
 
 function popupState() {
