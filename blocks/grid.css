@@ -5,10 +5,29 @@
   column-gap: 17px;
 }
 .grid__box {
+  position: relative;
   max-width: 282px;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
+}
+.grid__display {
+  z-index: 1;
+  display: none;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+.grid__display-image {
+  z-index: 2;
+  max-width: 816px;
+  max-height: 433px;
+  width: 100%;
+  margin: auto;
 }
 .grid__box-portrait {
   max-height: 282px;
@@ -39,7 +58,22 @@
   max-width: 21px;
   width: 100%;
 }
+.grid__content-like_active {
+  background-image: url(../images/liked_icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .grid__content-like:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.grid__delete-button {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  max-width: 18px;
+}
+.grid__delete-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }

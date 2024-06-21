@@ -9,6 +9,7 @@ let inputName = popup.querySelector(".form__input-name");
 let inputBio = popup.querySelector(".form__input-bio");
 let profileName = profile.querySelector(".profile__info-name");
 let profileBio = profile.querySelector(".profile__info-bio");
+
 const addPostButton = profile.querySelector(".profile__button-add-post");
 const popupAddPost = document.querySelector(".popup__add-post");
 const closePopupPost = popupAddPost.querySelector(".popup__closer");
@@ -76,7 +77,20 @@ function CriaPost(post) {
   const postTitle = feedPost.querySelector(".grid__content-title");
 
   postImage.src = post.link;
+  postImage.alt = post.name;
   postTitle.textContent = post.name;
+
+  feedPost
+    .querySelector(".grid__delete-button")
+    .addEventListener("click", function (evt) {
+      evt.target.closest(".grid__box").remove();
+    });
+
+  feedPost
+    .querySelector(".grid__content-like")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("grid__content-like_active");
+    });
 
   const feed = document.querySelector(".grid");
   feed.prepend(feedPost);
