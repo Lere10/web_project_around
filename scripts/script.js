@@ -92,6 +92,24 @@ function CriaPost(post) {
       evt.target.classList.toggle("grid__content-like_active");
     });
 
+  feedPost
+    .querySelector(".grid__box-portrait-photo")
+    .addEventListener("click", function (evt) {
+      const displayPhoto = evt.target.closest(".grid__box");
+      const photoPost = displayPhoto.querySelector(".grid__display");
+      photoPost.querySelector(".grid__display-image").src = post.link;
+      photoPost.querySelector(".grid__display-title").textContent = post.name;
+      photoPost.classList.toggle("grid__display_opened");
+    });
+
+  feedPost
+    .querySelector(".grid__display-closer")
+    .addEventListener("click", function (evt) {
+      evt.target
+        .closest(".grid__display")
+        .classList.toggle(".grid__display_opened");
+    });
+
   const feed = document.querySelector(".grid");
   feed.prepend(feedPost);
 }
