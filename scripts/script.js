@@ -4,7 +4,7 @@ let buttonOpenForm = profile.querySelector(".profile__button-open-form");
 let popup = document.querySelector(".popup");
 let closePopup = popup.querySelector(".popup__closer");
 
-let submitButton = popup.querySelector(".form__button");
+let submitButton = popup.querySelector(".form");
 let inputName = popup.querySelector(".form__input-name");
 let inputBio = popup.querySelector(".form__input-bio");
 let profileName = profile.querySelector(".profile__info-name");
@@ -39,8 +39,7 @@ function changeProfile(evt) {
   evt.preventDefault();
 }
 
-//Aplicar o submit no form e não o Clique no botão -- depois
-submitButton.addEventListener("click", changeProfile);
+submitButton.addEventListener("submit", changeProfile);
 
 const initialCards = [
   {
@@ -105,9 +104,10 @@ function CriaPost(post) {
   feedPost
     .querySelector(".grid__display-closer")
     .addEventListener("click", function (evt) {
-      evt.target
-        .closest(".grid__display")
-        .classList.toggle(".grid__display_opened");
+      const photoPost = evt.target
+        .closest(".grid__box")
+        .querySelector(".grid__display");
+      photoPost.classList.toggle("grid__display_opened");
     });
 
   const feed = document.querySelector(".grid");

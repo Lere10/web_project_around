@@ -28,15 +28,13 @@
 .grid__display-container {
   position: relative;
   z-index: 2;
-  max-width: 816px;
+  max-width: 75vw;
 
-  width: 100%;
   margin: auto;
 }
 .grid__display-image {
-  max-height: 540px;
+  max-height: 75vh;
   width: 100%;
-  overflow: hidden;
 }
 .grid__display-closer {
   position: absolute;
@@ -112,21 +110,12 @@
     grid-template-rows: 1fr 1fr 1fr;
     max-width: 581px;
   }
-  .grid__display-container {
-    max-width: 88.12%;
-  }
-  .grid__display-image {
-    max-height: none;
-  }
 }
 @media screen and (max-width: 580px) {
   .grid {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
     max-width: 282px;
-  }
-  .grid__display-container {
-    max-width: 80%;
   }
   .grid__display-closer {
     max-width: 20px;
