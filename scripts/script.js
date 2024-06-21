@@ -20,7 +20,8 @@ function popupState() {
   inputBio.value = profileBio.textContent;
 }
 function popupPostState() {
-  popupAddPost.classList.toggle("popup_opened");
+  popupAddPost.closest(".popup").classList.toggle("popup_opened");
+  console.log("oi");
 }
 
 addPostButton.addEventListener("click", popupPostState);

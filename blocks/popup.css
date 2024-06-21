@@ -11,7 +11,7 @@
 }
 .popup__addpost {
   z-index: 1;
-  display: none;
+  display: flex;
   align-items: center;
   position: fixed;
   top: 0px;
