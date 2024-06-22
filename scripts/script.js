@@ -1,14 +1,14 @@
-let profile = document.querySelector(".profile");
+const profile = document.querySelector(".profile");
 
-let buttonOpenForm = profile.querySelector(".profile__button-open-form");
-let popup = document.querySelector(".popup");
-let closePopup = popup.querySelector(".popup__closer");
+const buttonOpenForm = profile.querySelector(".profile__button-open-form");
+const popup = document.querySelector(".popup");
+const closePopup = popup.querySelector(".popup__closer");
 
-let submitButton = popup.querySelector(".form");
-let inputName = popup.querySelector(".form__input-name");
-let inputBio = popup.querySelector(".form__input-bio");
-let profileName = profile.querySelector(".profile__info-name");
-let profileBio = profile.querySelector(".profile__info-bio");
+const submitButton = popup.querySelector(".form");
+const inputName = popup.querySelector(".form__input-name");
+const inputBio = popup.querySelector(".form__input-bio");
+const profileName = profile.querySelector(".profile__info-name");
+const profileBio = profile.querySelector(".profile__info-bio");
 
 const addPostButton = profile.querySelector(".profile__button-add-post");
 const popupAddPost = document.querySelector(".popup__addpost");
