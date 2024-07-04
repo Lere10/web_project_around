@@ -19,14 +19,24 @@
             class="popup__closer"
           />
           <h2 class="popup__title">Editar perfil</h2>
-          <form class="form popup__form">
+          <form class="form popup__form" novalidate>
             <fieldset class="form__fieldset">
               <input
                 type="text"
                 class="form__input form__input-name"
+                minlength="2"
+                maxlength="40"
                 required
               />
-              <input type="text" class="form__input form__input-bio" />
+              <span class="form__input_error-message"></span>
+              <input
+                type="text"
+                class="form__input form__input-bio"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="form__input_error-message"></span>
             </fieldset>
             <button type="submit" class="form__button">Salvar</button>
           </form>
@@ -42,7 +52,7 @@
               class="popup__closer"
             />
             <h2 class="popup__title">New Place</h2>
-            <form class="form popup__form">
+            <form class="form popup__form" novalidate>
               <fieldset class="form__fieldset">
                 <input
                   type="text"
@@ -50,16 +60,20 @@
                   class="form__input form__input-name"
                   placeholder="Title"
                   name="title"
+                  minlength="2"
+                  maxlength="30"
                   required
                 />
+                <span class="form__input_error-message"></span>
                 <input
-                  type="text"
+                  type="url"
                   id="imageURL"
                   class="form__input form__input-bio"
                   name="imageLink"
                   placeholder="Image URL"
                   required
                 />
+                <span class="form__input_error-message"></span>
               </fieldset>
               <button type="submit" class="form__button">Salvar</button>
             </form>
@@ -149,5 +163,6 @@
       </div>
     </div>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
