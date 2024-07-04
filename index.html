@@ -22,21 +22,23 @@
           <form class="form popup__form" novalidate>
             <fieldset class="form__fieldset">
               <input
+                id="name"
                 type="text"
                 class="form__input form__input-name"
                 minlength="2"
                 maxlength="40"
                 required
               />
-              <span class="form__input_error-message"></span>
+              <span class="form__input_error-message name-error"></span>
               <input
+                id="bio"
                 type="text"
                 class="form__input form__input-bio"
                 minlength="2"
                 maxlength="200"
                 required
               />
-              <span class="form__input_error-message"></span>
+              <span class="form__input_error-message bio-error"></span>
             </fieldset>
             <button type="submit" class="form__button">Salvar</button>
           </form>
@@ -64,7 +66,7 @@
                   maxlength="30"
                   required
                 />
-                <span class="form__input_error-message"></span>
+                <span class="form__input_error-message title-error"></span>
                 <input
                   type="url"
                   id="imageURL"
@@ -73,7 +75,7 @@
                   placeholder="Image URL"
                   required
                 />
-                <span class="form__input_error-message"></span>
+                <span class="form__input_error-message imageURL-error"></span>
               </fieldset>
               <button type="submit" class="form__button">Salvar</button>
             </form>
