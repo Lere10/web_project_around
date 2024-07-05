@@ -18,10 +18,10 @@
   font-size: 14px;
   font-weight: 400;
 }
-.form__input_error {
+.form__input__error {
   border-bottom: 1px solid #ff0000;
 }
-.form__input_error-message {
+.form__input__error-message {
   color: #ff0000;
   font-size: 12px;
   font-weight: 400;

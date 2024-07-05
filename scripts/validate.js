@@ -2,7 +2,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(
     `.form__${inputElement.id}-error`
   );
-  inputElement.classList.add("form__input_error");
+  inputElement.classList.add("form__input__error");
   errorElement.textContent = errorMessage;
 };
 
@@ -10,7 +10,7 @@ const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(
     `.form__${inputElement.id}-error`
   );
-  inputElement.classList.remove("form__input_error");
+  inputElement.classList.remove("form__input__error");
   errorElement.textContent = "";
 };
 
