@@ -14,6 +14,10 @@ const addPostButton = profile.querySelector(".profile__button-add-post");
 const popupAddPost = document.querySelector(".popup__addpost");
 const closePopupPost = popupAddPost.querySelector(".popup__closer");
 
+const addPostForm = popupAddPost.querySelector(".form");
+const titleInput = addPostForm.querySelector("#title");
+const imgInput = addPostForm.querySelector("#imageURL");
+
 function popupState() {
   popup.classList.toggle("popup_opened");
   inputName.value = profileName.textContent;
@@ -23,6 +27,11 @@ function popupState() {
 function popupPostState() {
   popupAddPost.closest(".popup").classList.toggle("popup_opened");
   document.addEventListener("keydown", closeEsc);
+  titleInput.value = "";
+  imgInput.value = "";
+  const buttonElement = addPostForm.querySelector(".form__button");
+  buttonElement.setAttribute("disabled", "");
+  buttonElement.classList.add("form__button_disabled");
 }
 
 function closeEsc(evt) {
@@ -134,12 +143,8 @@ initialCards.forEach((item) => {
   CriaPost(item);
 });
 
-const addPostForm = popupAddPost.querySelector(".form");
 function AddPost(evt) {
   evt.preventDefault();
-
-  const titleInput = addPostForm.querySelector("#title");
-  const imgInput = addPostForm.querySelector("#imageURL");
 
   const post = {
     name: titleInput.value,
