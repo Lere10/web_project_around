@@ -94,7 +94,7 @@ const initialCards = [
   },
 ];
 
-function CriaPost(post) {
+function createPost(post) {
   const feedTemplate = document.querySelector("#grid").content;
   const feedPost = feedTemplate.querySelector(".grid__box").cloneNode(true);
 
@@ -124,7 +124,20 @@ function CriaPost(post) {
       const photoPost = displayPhoto.querySelector(".grid__display");
       photoPost.querySelector(".grid__display-image").src = post.link;
       photoPost.querySelector(".grid__display-title").textContent = post.name;
-      photoPost.classList.toggle("grid__display_opened");
+      photoPost.classList.add("grid__display_opened");
+
+      const closeDisplay = () => {
+        photoPost.classList.remove("grid__display_opened");
+        document.removeEventListener("keydown", closeDisplay);
+      };
+
+      photoPost.addEventListener("click", function (evt) {
+        if (evt.target === evt.currentTarget) {
+          closeDisplay();
+        }
+      });
+
+      document.addEventListener("keydown", closeDisplay);
     });
 
   feedPost
@@ -140,7 +153,7 @@ function CriaPost(post) {
   feed.prepend(feedPost);
 }
 initialCards.forEach((item) => {
-  CriaPost(item);
+  createPost(item);
 });
 
 function AddPost(evt) {
@@ -151,7 +164,7 @@ function AddPost(evt) {
     link: imgInput.value,
   };
 
-  CriaPost(post);
+  createPost(post);
 
   popupPostState();
   titleInput.value = "";
