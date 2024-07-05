@@ -18,10 +18,31 @@ function popupState() {
   popup.classList.toggle("popup_opened");
   inputName.value = profileName.textContent;
   inputBio.value = profileBio.textContent;
+  document.addEventListener("keydown", closeEsc);
 }
 function popupPostState() {
   popupAddPost.closest(".popup").classList.toggle("popup_opened");
+  document.addEventListener("keydown", closeEsc);
 }
+
+function closeEsc(evt) {
+  if (evt.key === "Escape") {
+    popup.classList.remove("popup_opened");
+    popupAddPost.closest(".popup").classList.remove("popup_opened");
+    document.removeEventListener("keydown", closeEsc);
+  }
+}
+
+popupAddPost.addEventListener("click", function (evt) {
+  if (evt.target === evt.currentTarget) {
+    popupPostState();
+  }
+});
+popup.addEventListener("click", function (evt) {
+  if (evt.target === evt.currentTarget) {
+    popupState();
+  }
+});
 
 addPostButton.addEventListener("click", popupPostState);
 buttonOpenForm.addEventListener("click", popupState);
