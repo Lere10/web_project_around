@@ -6,25 +6,25 @@ const enableValidation = (object) => {
     inputElement.classList.add(object.errorClass);
 
     if (errorValid.tooShort) {
-      errorElement.textContent = "Text too short";
+      errorElement.textContent = "Muito curto";
     } else if (errorValid.badInput) {
-      errorElement.textContent = "Invalid Input";
+      errorElement.textContent = "Campo inválido";
     } else if (errorValid.customError) {
-      errorElement.textContent = "Value not accepted";
+      errorElement.textContent = "Valor não aceito";
     } else if (errorValid.patternMismatch) {
-      errorElement.textContent = "Invalid Format";
+      errorElement.textContent = "Formato inválido";
     } else if (errorValid.rangeOverflow) {
-      errorElement.textContent = "Value too high";
+      errorElement.textContent = "Valor muito alto";
     } else if (errorValid.rangeUnderflow) {
-      errorElement.textContent = "Value too low";
+      errorElement.textContent = "Valor muito baixo";
     } else if (errorValid.stepMismatch) {
-      errorElement.textContent = "Invalid value";
+      errorElement.textContent = "Valor inválido";
     } else if (errorValid.tooLong) {
-      errorElement.textContent = "Value too long";
+      errorElement.textContent = "Muito longo";
     } else if (errorValid.typeMismatch) {
-      errorElement.textContent = "Invalid data type";
+      errorElement.textContent = "Tipo de dado inválido";
     } else if (errorValid.valueMissing) {
-      errorElement.textContent = "Required field";
+      errorElement.textContent = "Campo obrigatório";
     }
   };
 
