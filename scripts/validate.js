@@ -1,11 +1,31 @@
 const enableValidation = (object) => {
-  const showInputError = (formElement, inputElement, errorMessage) => {
+  const showInputError = (formElement, inputElement, errorValid) => {
     const errorElement = formElement.querySelector(
       `.form__${inputElement.id}-error`
     );
     inputElement.classList.add(object.errorClass);
-    errorElement.textContent = errorMessage;
-    // Olá revisor, nesse trecho do código foi apontado um erro mas confesso que não entendi o feedback e também não achei nada relacionável na descrição do projeto ou no checklist, poderia me explicar um pouco melhor o que não está de acordo com o projeto?
+
+    if (errorValid.tooShort) {
+      errorElement.textContent = "Text too short";
+    } else if (errorValid.badInput) {
+      errorElement.textContent = "Invalid Input";
+    } else if (errorValid.customError) {
+      errorElement.textContent = "Value not accepted";
+    } else if (errorValid.patternMismatch) {
+      errorElement.textContent = "Invalid Format";
+    } else if (errorValid.rangeOverflow) {
+      errorElement.textContent = "Value too high";
+    } else if (errorValid.rangeUnderflow) {
+      errorElement.textContent = "Value too low";
+    } else if (errorValid.stepMismatch) {
+      errorElement.textContent = "Invalid value";
+    } else if (errorValid.tooLong) {
+      errorElement.textContent = "Value too long";
+    } else if (errorValid.typeMismatch) {
+      errorElement.textContent = "Invalid data type";
+    } else if (errorValid.valueMissing) {
+      errorElement.textContent = "Required field";
+    }
   };
 
   const hideInputError = (formElement, inputElement) => {
@@ -18,7 +38,7 @@ const enableValidation = (object) => {
 
   const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
+      showInputError(formElement, inputElement, inputElement.validity);
     } else {
       hideInputError(formElement, inputElement);
     }
