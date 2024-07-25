@@ -46,6 +46,17 @@ export default class Card {
       .addEventListener("click", () => {
         this._closeDisplay();
       });
+
+    this._element
+      .querySelector(".grid__content-like")
+      .addEventListener("click", () => {
+        this._handleLike();
+      });
+  }
+
+  _handleLike() {
+    this._likeCard = this._element.querySelector(".grid__content-like");
+    this._likeCard.classList.toggle("grid__content-like_active");
   }
 
   _deleteCard() {
@@ -64,14 +75,6 @@ export default class Card {
     this._display.classList.remove("grid__display_opened");
     // ToFix/Remover eventListener ao clicar no ESC
     // document.removeEventListener("keydown", this._closeDiplay);
-  }
-
-  _likeCard() {
-    this._getTemplate()
-      .querySelector(".grid__content-like")
-      .addEventListener("click", (evt) => {
-        evt.target.classList.toggle("grid__content-like_active");
-      });
   }
 
   generateCard() {
