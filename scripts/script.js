@@ -95,28 +95,35 @@ const initialCards = [
 ];
 
 function createPost(post) {
+  //localiza e clona template
   const feedTemplate = document.querySelector("#grid").content;
   const feedPost = feedTemplate.querySelector(".grid__box").cloneNode(true);
 
+  //localiza campos do template clonado
   const postImage = feedPost.querySelector(".grid__box-portrait-photo");
   const postTitle = feedPost.querySelector(".grid__content-title");
 
+  //preenche campos do template clonado
   postImage.src = post.link;
   postImage.alt = post.name;
   postTitle.textContent = post.name;
 
+  //funcionalidade de delete
   feedPost
     .querySelector(".grid__delete-button")
     .addEventListener("click", function (evt) {
       evt.target.closest(".grid__box").remove();
     });
 
+  //funcionalidade de like
   feedPost
     .querySelector(".grid__content-like")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("grid__content-like_active");
     });
 
+  //Display //localiza e preenche os dados do display
+  //abre display
   feedPost
     .querySelector(".grid__box-portrait-photo")
     .addEventListener("click", function (evt) {
@@ -126,20 +133,28 @@ function createPost(post) {
       photoPost.querySelector(".grid__display-title").textContent = post.name;
       photoPost.classList.add("grid__display_opened");
 
+      //funcao de fechar display
       const closeDisplay = () => {
         photoPost.classList.remove("grid__display_opened");
         document.removeEventListener("keydown", closeDisplay);
       };
 
+      //chama a funcao de fechar display quando clica fora da imagem
       photoPost.addEventListener("click", function (evt) {
         if (evt.target === evt.currentTarget) {
           closeDisplay();
         }
       });
 
-      document.addEventListener("keydown", closeDisplay);
+      //chama a funcao de fechar display ao clicar em tecla ESC
+      document.addEventListener("keydown", (evt) => {
+        if (evt.key === "Escape") {
+          closeDisplay();
+        }
+      });
     });
 
+  // fecha display ao clicar no X
   feedPost
     .querySelector(".grid__display-closer")
     .addEventListener("click", function (evt) {
@@ -149,9 +164,12 @@ function createPost(post) {
       photoPost.classList.toggle("grid__display_opened");
     });
 
+  //localiza feed a adiciona cartao com funcionalidades em append
   const feed = document.querySelector(".grid");
   feed.prepend(feedPost);
 }
+
+//itera sobre cartões e cria post com funcionalidades
 initialCards.forEach((item) => {
   createPost(item);
 });
