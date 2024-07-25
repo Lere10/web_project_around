@@ -15,57 +15,72 @@ export default class Card {
     return cardTemplate;
   }
 
-  _handleDisplay() {
-    this._getTemplate()
+  _setEventListeners() {
+    this._element
+      .querySelector(".grid__delete-button")
+      .addEventListener("click", () => {
+        this._deleteCard();
+      });
+
+    this._element
       .querySelector(".grid__box-portrait-photo")
-      .addEventListener("click", function (evt) {
-        const displayPhoto = evt.target.closest(".grid__box");
-        const photoPost = displayPhoto.querySelector(".grid__display");
-        photoPost.querySelector(".grid__display-image").src = this._image;
-        photoPost.querySelector(".grid__display-title").textContent =
-          this._title;
-        photoPost.classList.add("grid__display_opened");
+      .addEventListener("click", () => {
+        this._openDisplay();
+      });
 
-        //funcao de fechar display
-        const closeDisplay = () => {
-          photoPost.classList.remove("grid__display_opened");
-          document.removeEventListener("keydown", closeDisplay);
-        };
-
-        //chama a funcao de fechar display quando clica fora da imagem
-        photoPost.addEventListener("click", function (evt) {
-          if (evt.target === evt.currentTarget) {
-            closeDisplay();
-          }
-        });
-
-        //chama a funcao de fechar display ao clicar em tecla ESC
-        document.addEventListener("keydown", (evt) => {
-          if (evt.key === "Escape") {
-            closeDisplay();
-          }
-        });
-
-        this._getTemplate()
-          .querySelector(".grid__display-closer")
-          .addEventListener("click", function (evt) {
-            const photoPost = evt.target
-              .closest(".grid__box")
-              .querySelector(".grid__display");
-            photoPost.classList.toggle("grid__display_opened");
-          });
+    this._element
+      .querySelector(".grid__display")
+      .addEventListener("click", (evt) => {
+        if (evt.target === evt.currentTarget) {
+          this._closeDiplay();
+          console.log("heloo");
+        }
       });
   }
+
+  _deleteCard() {
+    this._element.remove();
+  }
+
+  _openDisplay() {
+    this._display = this._element.querySelector(".grid__display");
+    this._display.querySelector(".grid__display-image").src = this._image;
+    this._display.querySelector(".grid__display-title").textContent =
+      this._title;
+    this._display.classList.add("grid__display_opened");
+  }
+
+  _closeDiplay() {
+    this._display.classList.remove("grid__display_opened");
+  }
+
+  //  _handleDisplay() {
+  //    //chama a funcao de fechar display quando clica fora da imagem
+  //    photoPost.addEventListener("click", function (evt) {
+  //      if (evt.target === evt.currentTarget) {
+  //        closeDisplay();
+  //      }
+  //    });
+  //
+  //    //chama a funcao de fechar display ao clicar em tecla ESC
+  //    document.addEventListener("keydown", (evt) => {
+  //      if (evt.key === "Escape") {
+  //       closeDisplay();
+  //      }
+  //    });
+  //
+  //    this._getTemplate()
+  //      .querySelector(".grid__display-closer")
+  //      .addEventListener("click", function (evt) {
+  //        const photoPost = evt.target
+  //          .closest(".grid__box")
+  //          .querySelector(".grid__display");
+  //        photoPost.classList.toggle("grid__display_opened");
+  //      });
+  //  }
 
   //_closeDisplay() {}
 
-  _deleteCard() {
-    this._getTemplate()
-      .querySelector(".grid__delete-button")
-      .addEventListener("click", (evt) => {
-        evt.target.closest(".grid__box").remove();
-      });
-  }
   _likeCard() {
     this._getTemplate()
       .querySelector(".grid__content-like")
@@ -80,7 +95,9 @@ export default class Card {
     this._element.querySelector(".grid__box-portrait-photo").alt = this._title;
     this._element.querySelector(".grid__content-title").textContent =
       this._title;
+
+    this._setEventListeners();
+
     return this._element;
-    console.log("oi");
   }
 }
