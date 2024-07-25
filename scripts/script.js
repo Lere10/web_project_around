@@ -139,13 +139,6 @@ function createPost(post) {
         document.removeEventListener("keydown", closeDisplay);
       };
 
-      //chama a funcao de fechar display quando clica fora da imagem
-      photoPost.addEventListener("click", function (evt) {
-        if (evt.target === evt.currentTarget) {
-          closeDisplay();
-        }
-      });
-
       //chama a funcao de fechar display ao clicar em tecla ESC
       document.addEventListener("keydown", (evt) => {
         if (evt.key === "Escape") {
@@ -153,6 +146,13 @@ function createPost(post) {
         }
       });
     });
+
+  //chama a funcao de fechar display quando clica fora da imagem
+  photoPost.addEventListener("click", function (evt) {
+    if (evt.target === evt.currentTarget) {
+      closeDisplay();
+    }
+  });
 
   // fecha display ao clicar no X
   feedPost
