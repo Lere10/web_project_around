@@ -58,7 +58,6 @@ buttonOpenForm.addEventListener("click", popupState);
 closePopup.addEventListener("click", popupState);
 closePopupPost.addEventListener("click", popupPostState);
 
-//funcao de editar perfil
 function changeProfile(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
@@ -66,7 +65,6 @@ function changeProfile(evt) {
   popupState();
 }
 
-//ouvinte de mudanca de perfil
 submitButton.addEventListener("submit", changeProfile);
 
 export { popup, addPostForm, titleInput, imgInput };

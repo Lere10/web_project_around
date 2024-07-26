@@ -79,10 +79,7 @@ export default class FormValidity {
 
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        //recebe form e inputElement
         this._checkInputValidity(inputElement);
-
-        //recebe lista de inputs e elemento de botao
         this._toggleButtonState();
       });
     });

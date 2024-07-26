@@ -1,5 +1,4 @@
 export default class Card {
-  //passar #grid pro templateSelector
   constructor(data, templateSelector) {
     this._title = data.name;
     this._image = data.link;
