@@ -24,7 +24,7 @@ function popupState() {
   inputBio.value = profileBio.textContent;
   document.addEventListener("keydown", closeEsc);
 }
-function popupPostState() {
+export function popupPostState() {
   popupAddPost.closest(".popup").classList.toggle("popup_opened");
   document.addEventListener("keydown", closeEsc);
   titleInput.value = "";
@@ -68,3 +68,5 @@ function changeProfile(evt) {
 
 //ouvinte de mudanca de perfil
 submitButton.addEventListener("submit", changeProfile);
+
+export { popup, addPostForm, titleInput, imgInput };

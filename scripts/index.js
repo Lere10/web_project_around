@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import FormValidity from "./FormValidator.js";
+import { addPostForm, titleInput, imgInput, popupPostState } from "./utils.js";
 
 const initialCards = [
   {
@@ -34,6 +35,27 @@ initialCards.forEach((item) => {
   const feed = document.querySelector(".grid");
   feed.prepend(cardElement);
 });
+
+function createCard(evt) {
+  evt.preventDefault();
+
+  const post = {
+    name: titleInput.value,
+    link: imgInput.value,
+  };
+
+  const card = new Card(post, "#grid");
+  const cardElement = card.generateCard();
+  const feed = document.querySelector(".grid");
+  feed.prepend(cardElement);
+
+  popupPostState();
+
+  titleInput.value = "";
+  imgInput.value = "";
+}
+
+addPostForm.addEventListener("submit", createCard);
 
 const selectors = {
   formSelector: ".form",
