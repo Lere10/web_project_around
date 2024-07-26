@@ -1,4 +1,6 @@
 const enableValidation = (object) => {
+  //.
+  //Mensagem de erro personalizada
   const showInputError = (formElement, inputElement, errorValid) => {
     const errorElement = formElement.querySelector(
       `.form__${inputElement.id}-error`
@@ -28,6 +30,7 @@ const enableValidation = (object) => {
     }
   };
 
+  //funcionalidade de retirar erro
   const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(
       `.form__${inputElement.id}-error`
@@ -36,6 +39,7 @@ const enableValidation = (object) => {
     errorElement.textContent = "";
   };
 
+  //checar validade do INPUT e chama hide or show inputError
   const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
       showInputError(formElement, inputElement, inputElement.validity);
@@ -44,12 +48,15 @@ const enableValidation = (object) => {
     }
   };
 
+  //checa se tem algum dado invalido
+  //recebe inputs de toggleButtonState e itera por elemento e retorna elemento nao válido
   const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
 
+  //muda o estado do botao conforme hasInvalidInput()
   const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
       buttonElement.classList.add(object.inactiveButtonClass);
@@ -60,6 +67,8 @@ const enableValidation = (object) => {
     }
   };
 
+  //faz um array dos inputs do formElement passado no parametro
+  //chama togglebutton nos inputs
   const SetEventListener = (formElement) => {
     const inputList = Array.from(
       formElement.querySelectorAll(object.inputSelector)
@@ -69,6 +78,7 @@ const enableValidation = (object) => {
     );
     toggleButtonState(inputList, buttonElement);
 
+    //ouve cada input e checa validade e buttonState
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", function () {
         checkInputValidity(formElement, inputElement);
@@ -76,6 +86,8 @@ const enableValidation = (object) => {
       });
     });
   };
+
+  //previne o comportamento padrao de todos os forms e aciona o manipulador de eventos em todos
   const formList = Array.from(document.querySelectorAll(object.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
@@ -86,6 +98,7 @@ const enableValidation = (object) => {
   });
 };
 
+//objeto com seletores
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",

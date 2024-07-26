@@ -73,8 +73,6 @@ export default class Card {
 
   _closeDisplay() {
     this._display.classList.remove("grid__display_opened");
-    // ToFix/Remover eventListener ao clicar no ESC
-    // document.removeEventListener("keydown", this._closeDiplay);
   }
 
   generateCard() {

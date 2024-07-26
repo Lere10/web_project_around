@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import FormValidity from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -32,4 +33,19 @@ initialCards.forEach((item) => {
   const cardElement = card.generateCard();
   const feed = document.querySelector(".grid");
   feed.prepend(cardElement);
+});
+
+const selectors = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input-error-message",
+  errorClass: "form__input-error",
+};
+
+const formList = Array.from(document.querySelectorAll(selectors.formSelector));
+formList.forEach((formElement) => {
+  const formValidation = new FormValidity(selectors, formElement);
+  const formEnable = formValidation.enableValidation();
 });
