@@ -1,5 +1,8 @@
-.page {
+html {
   background-color: #000;
+}
+
+.page {
   font-family: "Inter", sans-serif;
   font-weight: normal;
   font-size: 18px;
