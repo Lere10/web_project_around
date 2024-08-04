@@ -1,6 +1,7 @@
 import Card from "./Card.js";
 import FormValidity from "./FormValidator.js";
 import { addPostForm, titleInput, imgInput, popupPostState } from "./utils.js";
+import Section from "./Section.js";
 
 const initialCards = [
   {
@@ -29,14 +30,23 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((item) => {
-  const card = new Card(item, "#grid");
-  const cardElement = card.generateCard();
-  const feed = document.querySelector(".grid");
-  feed.prepend(cardElement);
-});
+//Class Section OK
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, "#grid");
+      const cardElement = card.generateCard();
+      section.addItem(cardElement);
+    },
+  },
+  ".grid"
+);
+section.renderer();
+//Class Section OK
 
 function createCard(evt) {
+  //faz sentido na class Section
   evt.preventDefault();
 
   const post = {
@@ -49,8 +59,8 @@ function createCard(evt) {
   const feed = document.querySelector(".grid");
   feed.prepend(cardElement);
 
+  //faz sentido na classe Popup
   popupPostState();
-
   titleInput.value = "";
   imgInput.value = "";
 }
