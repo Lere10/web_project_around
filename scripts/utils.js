@@ -34,6 +34,7 @@ export function popupPostState() {
   buttonElement.classList.add("form__button_disabled");
 }
 
+//handleEscClose
 function closeEsc(evt) {
   if (evt.key === "Escape") {
     popup.classList.remove("popup_opened");
@@ -42,6 +43,7 @@ function closeEsc(evt) {
   }
 }
 
+//fechamento de popup clicando fora da imagem
 popupAddPost.addEventListener("click", function (evt) {
   if (evt.target === evt.currentTarget) {
     popupPostState();
