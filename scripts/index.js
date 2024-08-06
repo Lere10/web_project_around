@@ -2,6 +2,7 @@ import Card from "./Card.js";
 import FormValidity from "./FormValidator.js";
 import { addPostForm, titleInput, imgInput, popupPostState } from "./utils.js";
 import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const initialCards = [
   {
@@ -45,27 +46,35 @@ const section = new Section(
 section.renderer();
 //Class Section OK
 
-function createCard(evt) {
-  //faz sentido na class Section
-  evt.preventDefault();
+// function createCard(evt) {
+//   //faz sentido na class Section
+//   evt.preventDefault();
 
-  const post = {
-    name: titleInput.value,
-    link: imgInput.value,
-  };
+//   const post = {
+//     name: titleInput.value,
+//     link: imgInput.value,
+//   };
 
-  const card = new Card(post, "#grid");
-  const cardElement = card.generateCard();
+//   const card = new Card(post, "#grid");
+//   const cardElement = card.generateCard();
+//   const feed = document.querySelector(".grid");
+//   feed.prepend(cardElement);
+
+//   //faz sentido na classe Popup
+//   popupPostState();
+// }
+
+const popupForm = new PopupWithForm("#popupWithImage", (data) => {
+  console.log("chamada instancia");
+  const newCard = new Card(data, "#grid");
+  const newCardElement = newCard.generateCard();
   const feed = document.querySelector(".grid");
-  feed.prepend(cardElement);
+  feed.prepend(newCardElement);
+  popupForm.close();
+});
+popupForm.setEventListener();
 
-  //faz sentido na classe Popup
-  popupPostState();
-  titleInput.value = "";
-  imgInput.value = "";
-}
-
-addPostForm.addEventListener("submit", createCard);
+//addPostForm.addEventListener("submit", createCard);
 
 const selectors = {
   formSelector: ".form",

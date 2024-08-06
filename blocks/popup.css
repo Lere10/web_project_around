@@ -34,7 +34,7 @@
 .popup__closer {
   position: absolute;
   top: -35px;
-  right: -35px;
+  right: -40px;
 }
 .popup__closer:hover {
   cursor: pointer;

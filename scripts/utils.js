@@ -44,21 +44,21 @@ function closeEsc(evt) {
 }
 
 //fechamento de popup clicando fora da imagem
-popupAddPost.addEventListener("click", function (evt) {
-  if (evt.target === evt.currentTarget) {
-    popupPostState();
-  }
-});
-popup.addEventListener("click", function (evt) {
-  if (evt.target === evt.currentTarget) {
-    popupState();
-  }
-});
+// popupAddPost.addEventListener("click", function (evt) {
+//   if (evt.target === evt.currentTarget) {
+//     popupPostState();
+//   }
+// });
+// popup.addEventListener("click", function (evt) {
+//   if (evt.target === evt.currentTarget) {
+//     popupState();
+//   }
+// });
 
 addPostButton.addEventListener("click", popupPostState);
 buttonOpenForm.addEventListener("click", popupState);
 closePopup.addEventListener("click", popupState);
-closePopupPost.addEventListener("click", popupPostState);
+//closePopupPost.addEventListener("click", popupPostState);
 
 function changeProfile(evt) {
   evt.preventDefault();

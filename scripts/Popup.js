@@ -17,23 +17,15 @@ export default class Popup {
   setEventListener() {
     this._selector
       .querySelector(".popup__closer") //also grid__display-closer
-      .addEventListener("click", this.close);
-    this._selector.addEventListener("click", (evt) => {
-      if (evt.target === evt.currentTarget) {
+      .addEventListener("click", () => {
         this.close();
-      }
-    });
+      });
+    this._selector
+      .querySelector("#popupOverlay")
+      .addEventListener("click", (evt) => {
+        if (evt.target === evt.currentTarget) {
+          this.close();
+        }
+      });
   }
 }
-
-//fechamento de popup clicando fora da imagem
-popupAddPost.addEventListener("click", function (evt) {
-  if (evt.target === evt.currentTarget) {
-    popupPostState();
-  }
-});
-popup.addEventListener("click", function (evt) {
-  if (evt.target === evt.currentTarget) {
-    popupState();
-  }
-});
