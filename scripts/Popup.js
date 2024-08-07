@@ -1,12 +1,20 @@
 export default class Popup {
   constructor(popupSelector) {
     this._selector = document.querySelector(popupSelector);
+    this.open = this.open.bind(this);
+    if (!this._selector) {
+      console.log("erro no seletor passado");
+    }
   }
   open() {
-    this._selector.classList.add("popup_opened");
+    //Isso funciona
+    this._selector.classList.add("grid__display_opened");
+    //isso nao funciona kkkkkkkkkkk
+    //this._selector.classList.add("grid__display_opened");
+    //ISSO NÂO FAZ O MENOR SENTIDO KKKKKKKKK
   }
   close() {
-    this._selector.classList.remove("popup_opened");
+    this._selector.classList.remove("grid__display_opened");
   }
   _handleEscClose(evt) {
     this.close();

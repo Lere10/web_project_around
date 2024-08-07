@@ -3,6 +3,7 @@ import FormValidity from "./FormValidator.js";
 import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const profile = document.querySelector(".profile");
 const addPostButton = profile.querySelector(".profile__button-add-post");
@@ -40,7 +41,10 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#grid");
+      const card = new Card(item, "#grid", (data) => {
+        const popupWithImage = new PopupWithImage(".grid__display");
+        popupWithImage.open(data);
+      });
       const cardElement = card.generateCard();
       section.addItem(cardElement);
     },
@@ -54,9 +58,6 @@ const userInfo = new UserInfo({
   name: ".profile__info-name",
   bio: ".profile__info-bio",
 });
-
-// const userInfo = new UserInfo({ name: "algo", bio: "algo2" });
-// userInfo.getUserInfo();
 
 //popupWithFormPost OK
 const popupForm = new PopupWithForm("#popupPost", (data) => {

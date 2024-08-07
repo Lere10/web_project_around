@@ -17,10 +17,3 @@ const closePopupPost = popupAddPost.querySelector(".popup__closer");
 const addPostForm = popupAddPost.querySelector(".form");
 const titleInput = addPostForm.querySelector("#title");
 const imgInput = addPostForm.querySelector("#imageURL");
-
-function popupState() {
-  popup.classList.toggle("popup_opened");
-  inputName.value = profileName.textContent;
-  inputBio.value = profileBio.textContent;
-  document.addEventListener("keydown", closeEsc);
-}
