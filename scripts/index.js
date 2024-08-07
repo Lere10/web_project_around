@@ -44,6 +44,7 @@ const section = new Section(
       const card = new Card(item, "#grid", (data) => {
         const popupWithImage = new PopupWithImage(".grid__display");
         popupWithImage.open(data);
+        popupWithImage.setEventListener();
       });
       const cardElement = card.generateCard();
       section.addItem(cardElement);
@@ -61,7 +62,11 @@ const userInfo = new UserInfo({
 
 //popupWithFormPost OK
 const popupForm = new PopupWithForm("#popupPost", (data) => {
-  const newCard = new Card(data, "#grid");
+  const newCard = new Card(data, "#grid", (data) => {
+    const popupWithImage = new PopupWithImage(".grid__display");
+    //popupWithImage.open(data);
+    popupWithImage.setEventListener();
+  });
   const newCardElement = newCard.generateCard();
   const feed = document.querySelector(".grid");
   feed.prepend(newCardElement);

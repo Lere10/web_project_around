@@ -11,7 +11,6 @@ export default class Popup {
     this._selector.classList.add("grid__display_opened");
     //isso nao funciona kkkkkkkkkkk
     //this._selector.classList.add("grid__display_opened");
-    //ISSO NÂO FAZ O MENOR SENTIDO KKKKKKKKK
   }
   close() {
     this._selector.classList.remove("grid__display_opened");
@@ -28,12 +27,12 @@ export default class Popup {
     });
     this._selector
       .querySelector(".popup__closer")
-      .addEventListener("click", () => {
+      ?.addEventListener("click", () => {
         this.close();
       });
     this._selector
       .querySelector("#popupOverlay")
-      .addEventListener("click", (evt) => {
+      ?.addEventListener("click", (evt) => {
         if (evt.target === evt.currentTarget) {
           this.close();
         }

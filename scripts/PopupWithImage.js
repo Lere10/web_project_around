@@ -11,8 +11,10 @@ export default class PopupWithImage extends Popup {
       ".grid__display-title"
     );
     subtitleDisplay.textContent = image.name;
-    console.log(this._selector);
     super.open();
+  }
+  close() {
+    super.close();
   }
 }
 

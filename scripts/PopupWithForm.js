@@ -16,6 +16,10 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
+    this._selector
+      .querySelector(".form__button")
+      .classList.add("form__button_disabled");
+    this._selector.querySelector(".form__button").setAttribute("disabled", "");
     this._selector.querySelector(".form").reset();
   }
   setEventListener() {
