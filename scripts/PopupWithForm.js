@@ -7,10 +7,10 @@ export default class PopupWithForm extends Popup {
   }
   _getInputValues() {
     return {
-      nameUser: this._selector.querySelector(".form__input-name").value,
-      bio: this._selector.querySelector(".form__input-bio").value,
-      name: this._selector.querySelector("#title").value,
-      link: this._selector.querySelector("#imageURL").value,
+      name: this._selector.querySelector(".form__input-name").value,
+      link: this._selector.querySelector(".form__input-bio").value,
+      //  name: this._selector.querySelector("#title").value,
+      //  link: this._selector.querySelector("#imageURL").value,
     };
   }
 
@@ -23,7 +23,6 @@ export default class PopupWithForm extends Popup {
     this._selector.querySelector(".form").addEventListener("submit", (evt) => {
       evt.preventDefault();
       const data = this._getInputValues();
-      console.log(data);
       this._callback(data);
     });
   }
