@@ -50,8 +50,13 @@ const section = new Section(
 section.renderer();
 //Class Section OK
 
-const userInfo = new UserInfo({ name: "algo", bio: "algo2" });
-userInfo.getUserInfo();
+const userInfo = new UserInfo({
+  name: ".profile__info-name",
+  bio: ".profile__info-bio",
+});
+
+// const userInfo = new UserInfo({ name: "algo", bio: "algo2" });
+// userInfo.getUserInfo();
 
 //popupWithFormPost OK
 const popupForm = new PopupWithForm("#popupPost", (data) => {
@@ -63,14 +68,19 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
 });
 popupForm.setEventListener();
 
-//popupWithForm do User
+//popupWithForm do User -----------------------------------------
 const popupUser = new PopupWithForm("#popupUser", (data) => {
+  userInfo.setUserInfo();
   popupUser.close();
   //utiliza data para receber nameUser e bio para setUser
 });
 popupUser.setEventListener();
 
+//---------------------------------------------------------------
 buttonOpenForm.addEventListener("click", () => {
+  const currentProfile = userInfo.getUserInfo();
+  document.querySelector(".form__input-name").value = currentProfile.name;
+  document.querySelector(".form__input-bio").value = currentProfile.bio;
   popupUser.open();
 });
 addPostButton.addEventListener("click", () => {

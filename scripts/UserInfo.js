@@ -1,15 +1,18 @@
 export default class UserInfo {
   constructor({ name, bio }) {
-    this._name = name;
-    this._bio = bio;
+    this._name = document.querySelector(name);
+    this._bio = document.querySelector(bio);
   }
   getUserInfo() {
     return {
-      name: this._name,
-      bio: this._bio,
+      name: this._name.textContent,
+      bio: this._bio.textContent,
     };
   }
-  setUserInfo() {}
+  setUserInfo() {
+    this._name.textContent = document.querySelector(".form__input-name").value;
+    this._bio.textContent = document.querySelector(".form__input-bio").value;
+  }
 }
 
 // function changeProfile(evt) {
@@ -20,3 +23,17 @@ export default class UserInfo {
 // }
 
 // submitButton.addEventListener("submit", changeProfile);
+
+//-----------------------------------------------------------------
+
+// function popupState() {
+//   popup.classList.toggle("popup_opened");
+//   inputName.value = profileName.textContent;
+//   inputBio.value = profileBio.textContent;
+//   document.addEventListener("keydown", closeEsc);
+// }
+
+// const inputName = popup.querySelector(".form__input-name");
+// const inputBio = popup.querySelector(".form__input-bio");
+// const profileName = profile.querySelector(".profile__info-name");
+// const profileBio = profile.querySelector(".profile__info-bio");
