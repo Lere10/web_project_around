@@ -36,7 +36,6 @@ const initialCards = [
   },
 ];
 
-//Class Section OK
 const section = new Section(
   {
     items: initialCards,
@@ -53,18 +52,16 @@ const section = new Section(
   ".grid"
 );
 section.renderer();
-//Class Section OK
 
 const userInfo = new UserInfo({
   name: ".profile__info-name",
   bio: ".profile__info-bio",
 });
 
-//popupWithFormPost OK
 const popupForm = new PopupWithForm("#popupPost", (data) => {
   const newCard = new Card(data, "#grid", (data) => {
     const popupWithImage = new PopupWithImage(".grid__display");
-    //popupWithImage.open(data);
+    popupWithImage.open(data);
     popupWithImage.setEventListener();
   });
   const newCardElement = newCard.generateCard();
@@ -74,15 +71,12 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
 });
 popupForm.setEventListener();
 
-//popupWithForm do User -----------------------------------------
 const popupUser = new PopupWithForm("#popupUser", (data) => {
   userInfo.setUserInfo();
   popupUser.close();
-  //utiliza data para receber nameUser e bio para setUser
 });
 popupUser.setEventListener();
 
-//---------------------------------------------------------------
 buttonOpenForm.addEventListener("click", () => {
   const currentProfile = userInfo.getUserInfo();
   document.querySelector(".form__input-name").value = currentProfile.name;
@@ -93,7 +87,6 @@ addPostButton.addEventListener("click", () => {
   popupForm.open();
 });
 
-//FormValidator
 const selectors = {
   formSelector: ".form",
   inputSelector: ".form__input",

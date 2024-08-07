@@ -17,14 +17,3 @@ export default class PopupWithImage extends Popup {
     super.close();
   }
 }
-
-// this._element
-//   .querySelector(".grid__box-portrait-photo")
-//   .addEventListener("click", () => {
-//     this._handleCardClick({ name: this._title, link: this._image });
-//     document.addEventListener("keydown", (evt) => {
-//       if (evt.key === "Escape") {
-//         this._closeDisplay();
-//       }
-//     });
-//   });

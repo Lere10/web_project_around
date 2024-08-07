@@ -15,7 +15,6 @@ export default class Card {
     return cardTemplate;
   }
 
-  //-------------------------------------setEventListeners------
   _setEventListeners() {
     this._element
       .querySelector(".grid__delete-button")
@@ -35,23 +34,10 @@ export default class Card {
         this._handleLike();
       });
   }
-  //----------------------setEventListeners-----
 
   _handleImageClick() {
     this._handleCardClick({ name: this._title, link: this._image });
   }
-
-  // _openDisplay() {
-  //   this._display = this._element.querySelector(".grid__display");
-  //   this._display.querySelector(".grid__display-image").src = this._image;
-  //   this._display.querySelector(".grid__display-title").textContent =
-  //     this._title;
-  //   this._display.classList.add("grid__display_opened");
-  // }
-
-  // _closeDisplay() {
-  //   this._display.classList.remove("grid__display_opened");
-  // }
 
   _handleLike() {
     this._likeCard = this._element.querySelector(".grid__content-like");
