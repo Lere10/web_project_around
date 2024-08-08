@@ -1,9 +1,9 @@
-import Card from "../components/Card.js";
-import FormValidity from "../components/FormValidator.js";
-import Section from "../components/Section.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/UserInfo.js";
-import PopupWithImage from "../components/PopupWithImage.js";
+import Card from "./Card.js";
+import FormValidity from "./FormValidator.js";
+import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const profile = document.querySelector(".profile");
 const addPostButton = profile.querySelector(".profile__button-add-post");
