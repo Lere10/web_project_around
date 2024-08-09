@@ -1,9 +1,15 @@
+import "./main.css";
 import Card from "../components/Card.js";
 import FormValidity from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+
+import closeIconpng from "./images/popup__closeicon.png";
+
+const closeIcon = document.getElementById("closeIcon");
+closeIcon.src = closeIconpng;
 
 const profile = document.querySelector(".profile");
 const addPostButton = profile.querySelector(".profile__button-add-post");
