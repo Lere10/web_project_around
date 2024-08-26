@@ -142,6 +142,29 @@
                     <p class="grid__display-title"></p>
                   </div>
                 </div>
+
+                <!--PopupwithConf End-->
+                <div class="popup" id="popupDeletePost">
+                  <div class="popup popupWithConfirmation" id="popupOverlay">
+                    <div class="popup__container">
+                      <img
+                        src="<%=require('./images/popup__closeicon.png')%>"
+                        alt="Ícone para fechar popup"
+                        class="popup__closer"
+                      />
+                      <h2 class="popup__title">Tem certeza?</h2>
+                      <form class="form popup__form" novalidate>
+                        <button
+                          type="submit"
+                          class="form__button form__deleteConfirmation"
+                        >
+                          Sim
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!--PopupwithConf End-->
                 <div class="grid__box-portrait">
                   <img class="grid__box-portrait-photo" />
                 </div>

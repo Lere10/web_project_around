@@ -7,10 +7,7 @@ export default class Popup {
     }
   }
   open() {
-    //Isso funciona
     this._selector.classList.add("grid__display_opened");
-    //isso nao funciona kkkkkkkkkkk
-    //this._selector.classList.add("grid__display_opened");
   }
   close() {
     this._selector.classList.remove("grid__display_opened");

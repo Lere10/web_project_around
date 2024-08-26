@@ -49,6 +49,9 @@
   cursor: pointer;
   opacity: 0.8;
 }
+.form__deleteConfirmation {
+  margin-top: 4px;
+}
 
 .form__button_disabled {
   color: #000;
@@ -77,5 +80,8 @@
     font-size: 14px;
     margin-top: 46px;
     margin-bottom: 25px;
+  }
+  .form__deleteConfirmation {
+    margin-top: 2px;
   }
 }

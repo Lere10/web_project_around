@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 
 import closeIconpng from "./images/popup__closeicon.png";
 
@@ -46,11 +47,25 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#grid", (data) => {
-        const popupWithImage = new PopupWithImage(".grid__display");
-        popupWithImage.open(data);
-        popupWithImage.setEventListener();
-      });
+      const card = new Card(
+        item,
+        "#grid",
+        (data) => {
+          const popupWithImage = new PopupWithImage(".grid__display");
+          popupWithImage.open(data);
+          popupWithImage.setEventListener();
+        },
+        () => {
+          const deleteForm = new PopupWithConfirmation(
+            "#popupDeletePost",
+            () => {
+              card.deleteCard();
+            }
+          );
+          deleteForm.open();
+          deleteForm.setEventListener();
+        }
+      );
       const cardElement = card.generateCard();
       section.addItem(cardElement);
     },
@@ -65,11 +80,22 @@ const userInfo = new UserInfo({
 });
 
 const popupForm = new PopupWithForm("#popupPost", (data) => {
-  const newCard = new Card(data, "#grid", (data) => {
-    const popupWithImage = new PopupWithImage(".grid__display");
-    popupWithImage.open(data);
-    popupWithImage.setEventListener();
-  });
+  const newCard = new Card(
+    data,
+    "#grid",
+    (data) => {
+      const popupWithImage = new PopupWithImage(".grid__display");
+      popupWithImage.open(data);
+      popupWithImage.setEventListener();
+    },
+    () => {
+      const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
+        newCard.deleteCard();
+      });
+      deleteForm.open();
+      deleteForm.setEventListener();
+    }
+  );
   const newCardElement = newCard.generateCard();
   const feed = document.querySelector(".grid");
   feed.prepend(newCardElement);
