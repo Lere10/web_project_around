@@ -35,6 +35,8 @@ export default class Card {
       });
   }
 
+  _handleDeleteClick() {}
+
   _handleImageClick() {
     this._handleCardClick({ name: this._title, link: this._image });
   }
