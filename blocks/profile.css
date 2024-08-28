@@ -30,6 +30,7 @@
 }
 .profile__edit-pencil:hover {
   opacity: 100%;
+  cursor: pointer;
 }
 .profile__info {
   display: flex;

@@ -15,6 +15,7 @@ closeIcon.src = closeIconpng;
 const profile = document.querySelector(".profile");
 const addPostButton = profile.querySelector(".profile__button-add-post");
 const buttonOpenForm = profile.querySelector(".profile__button-open-form");
+const editAvatarButton = profile.querySelector(".profile__edit-pencil");
 
 api.getInitialCards().then((initialCards) => {
   console.log(`Cards criados: `, initialCards);
@@ -53,9 +54,11 @@ api.getInitialCards().then((initialCards) => {
 const userInfo = new UserInfo({
   name: ".profile__info-name",
   bio: ".profile__info-bio",
+  link: ".profile__photo",
 });
 
 api.getUser().then((userData) => {
+  //console.log(userData);
   userInfo.setUserInfo(userData);
 });
 
@@ -116,6 +119,17 @@ const popupUser = new PopupWithForm("#popupUser", (data) => {
 });
 popupUser.setEventListener();
 
+//AQUI --------------------------------<
+const popupAvatar = new PopupWithForm("#popupUserAvatar", (data) => {
+  userInfo.setUserAvatar(data);
+  popupAvatar.close();
+});
+popupAvatar.setEventListener();
+
+editAvatarButton.addEventListener("click", () => {
+  popupAvatar.open();
+});
+
 buttonOpenForm.addEventListener("click", () => {
   const currentProfile = userInfo.getUserInfo();
   document.querySelector(".form__input-name").value = currentProfile.name;
@@ -136,6 +150,7 @@ const selectors = {
 };
 
 const formList = Array.from(document.querySelectorAll(selectors.formSelector));
+console.log(formList);
 formList.forEach((formElement) => {
   const formValidation = new FormValidity(selectors, formElement);
   const formEnable = formValidation.enableValidation();

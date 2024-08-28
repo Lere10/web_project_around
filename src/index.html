@@ -44,6 +44,36 @@
         </div>
       </section>
 
+      <!------------------------------------>
+      <section class="popup" id="popupUserAvatar">
+        <div class="popup__container" id="popupOverlay">
+          <img
+            src="<%=require('./images/popup__closeicon.png')%>"
+            id="closeIcon"
+            alt="Ícone para fechar popup"
+            class="popup__closer"
+          />
+          <h2 class="popup__title">Alterar foto de perfil</h2>
+          <form class="form popup__form" novalidate>
+            <fieldset class="form__fieldset">
+              <input
+                id="avatarLink"
+                type="url"
+                class="form__input form__input-bio"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span
+                class="form__input-error-message form__avatarLink-error"
+              ></span>
+            </fieldset>
+            <button type="submit" class="form__button">Salvar</button>
+          </form>
+        </div>
+      </section>
+      <!---------------------------------------->
+
       <section class="popup" id="popupPost">
         <div class="popup__addpost" id="popupOverlay">
           <div class="popup__container">
