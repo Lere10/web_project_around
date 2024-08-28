@@ -9,8 +9,15 @@ import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import api from "../components/Api.js";
 import closeIconpng from "./images/popup__closeicon.png";
 
+const closeIcon = document.getElementById("closeIcon");
+closeIcon.src = closeIconpng;
+
+const profile = document.querySelector(".profile");
+const addPostButton = profile.querySelector(".profile__button-add-post");
+const buttonOpenForm = profile.querySelector(".profile__button-open-form");
+
 api.getInitialCards().then((initialCards) => {
-  console.log(initialCards);
+  console.log(`Cards criados: `, initialCards);
   const section = new Section(
     {
       items: initialCards,
@@ -43,12 +50,15 @@ api.getInitialCards().then((initialCards) => {
   section.renderer();
 });
 
-const closeIcon = document.getElementById("closeIcon");
-closeIcon.src = closeIconpng;
-
-const profile = document.querySelector(".profile");
-const addPostButton = profile.querySelector(".profile__button-add-post");
-const buttonOpenForm = profile.querySelector(".profile__button-open-form");
+api.getUser().then((userData) => {
+  const userInfo = new UserInfo({
+    name: ".profile__info-name",
+    bio: ".profile__info-bio",
+  });
+  userInfo.setUserInfo(userData);
+  //Setar o user info a partir de UserData
+  console.log(userData);
+});
 
 // const initialCards = [
 //   {

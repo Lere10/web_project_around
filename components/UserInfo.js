@@ -9,8 +9,10 @@ export default class UserInfo {
       bio: this._bio.textContent,
     };
   }
-  setUserInfo() {
-    this._name.textContent = document.querySelector(".form__input-name").value;
-    this._bio.textContent = document.querySelector(".form__input-bio").value;
+  setUserInfo({ name, about }) {
+    this._name.textContent = name;
+    this._bio.textContent = about;
+    // this._name.textContent = document.querySelector(".form__input-name").value;
+    // this._bio.textContent = document.querySelector(".form__input-bio").value;
   }
 }
