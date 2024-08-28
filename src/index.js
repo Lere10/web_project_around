@@ -42,7 +42,8 @@ api.getInitialCards().then((initialCards) => {
             deleteForm.setEventListener();
           }
         );
-        const cardElement = card.generateCard();
+        const likes = item.likes.length;
+        const cardElement = card.generateCard(likes);
         section.addItem(cardElement);
       },
     },
@@ -150,7 +151,6 @@ const selectors = {
 };
 
 const formList = Array.from(document.querySelectorAll(selectors.formSelector));
-console.log(formList);
 formList.forEach((formElement) => {
   const formValidation = new FormValidity(selectors, formElement);
   const formEnable = formValidation.enableValidation();

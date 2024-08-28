@@ -53,12 +53,14 @@ export default class Card {
     this._element.remove();
   }
 
-  generateCard() {
+  generateCard(likes) {
     this._element = this._getTemplate();
     this._element.querySelector(".grid__box-portrait-photo").src = this._image;
     this._element.querySelector(".grid__box-portrait-photo").alt = this._title;
     this._element.querySelector(".grid__content-title").textContent =
       this._title;
+    this._element.querySelector(".grid__content-likeNumber").textContent =
+      likes;
 
     this._setEventListeners();
 

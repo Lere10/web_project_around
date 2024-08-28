@@ -18,6 +18,10 @@
   font-size: 14px;
   font-weight: 400;
 }
+.form__input-bio {
+  max-width: 358px;
+  width: 100%;
+}
 .form__input-error {
   border-bottom: 1px solid #ff0000;
 }
