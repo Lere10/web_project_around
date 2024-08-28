@@ -9,6 +9,7 @@ export default class PopupWithForm extends Popup {
     return {
       name: this._selector.querySelector(".form__input-name").value,
       link: this._selector.querySelector(".form__input-bio").value,
+      about: this._selector.querySelector(".form__input-bio").value,
     };
   }
 

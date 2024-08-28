@@ -8,6 +8,7 @@
   flex-wrap: nowrap;
 }
 .profile__info-photo-portrait {
+  position: relative;
   max-width: 120px;
   max-height: 120px;
   border-radius: 50%;
@@ -18,6 +19,17 @@
   width: 100%;
   max-width: 120px;
   max-height: 120px;
+}
+.profile__edit-pencil {
+  position: absolute;
+  width: 100%;
+  max-width: 26px;
+  padding: 47px;
+  opacity: 0%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.profile__edit-pencil:hover {
+  opacity: 100%;
 }
 .profile__info {
   display: flex;

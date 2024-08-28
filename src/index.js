@@ -50,14 +50,13 @@ api.getInitialCards().then((initialCards) => {
   section.renderer();
 });
 
+const userInfo = new UserInfo({
+  name: ".profile__info-name",
+  bio: ".profile__info-bio",
+});
+
 api.getUser().then((userData) => {
-  const userInfo = new UserInfo({
-    name: ".profile__info-name",
-    bio: ".profile__info-bio",
-  });
   userInfo.setUserInfo(userData);
-  //Setar o user info a partir de UserData
-  console.log(userData);
 });
 
 // const initialCards = [
@@ -87,11 +86,6 @@ api.getUser().then((userData) => {
 //   },
 // ];
 
-const userInfo = new UserInfo({
-  name: ".profile__info-name",
-  bio: ".profile__info-bio",
-});
-
 const popupForm = new PopupWithForm("#popupPost", (data) => {
   const newCard = new Card(
     data,
@@ -117,7 +111,7 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
 popupForm.setEventListener();
 
 const popupUser = new PopupWithForm("#popupUser", (data) => {
-  userInfo.setUserInfo();
+  userInfo.setUserInfo(data);
   popupUser.close();
 });
 popupUser.setEventListener();
