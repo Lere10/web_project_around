@@ -40,12 +40,18 @@ api.getInitialCards().then((initialCards) => {
                 card.deleteCard();
               }
             );
+
             deleteForm.open();
             deleteForm.setEventListener();
           }
         );
-        const likes = item.likes.length;
-        const cardElement = card.generateCard(likes);
+        api.getUser().then((userData) => {
+          if (userData._id === item.owner._id) {
+            card.removeDeleteIcon();
+          }
+        });
+
+        const cardElement = card.generateCard(item.likes.length);
         section.addItem(cardElement);
       },
     },
@@ -60,11 +66,13 @@ const userInfo = new UserInfo({
   link: ".profile__photo",
 });
 
-api.getUser().then((userData) => {
-  console.log(userData);
-  userInfo.setUserInfo(userData);
-  userInfo.setUserAvatar(userData);
-});
+api
+  .getUser()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+  })
+  .then(() => {});
 
 //api.setNewCard();
 
@@ -137,7 +145,7 @@ popupUser.setEventListener();
 const popupAvatar = new PopupWithForm("#popupUserAvatar", (data) => {
   userInfo.setUserAvatar(data);
   api.setNewAvatar(data);
-  console.log(`Outra data aqui paizao, avia:`, data);
+  //console.log(`Outra data aqui paizao, avia:`, data);
   popupAvatar.close();
 });
 popupAvatar.setEventListener();

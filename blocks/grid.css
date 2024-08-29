@@ -100,10 +100,14 @@
   font-weight: 400;
 }
 .grid__delete-button {
+  display: none;
   position: absolute;
   top: 18px;
   right: 15px;
   max-width: 18px;
+}
+.grid__delete-button_show {
+  display: block;
 }
 .grid__delete-button:hover {
   opacity: 0.6;
