@@ -2,6 +2,7 @@ export default class Card {
   constructor(data, templateSelector, handleCardClick, handleDeleteClick) {
     this._title = data.name;
     this._image = data.link;
+    //TODO - Isliked boolean
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;

@@ -35,6 +35,8 @@ api.getInitialCards().then((initialCards) => {
             const deleteForm = new PopupWithConfirmation(
               "#popupDeletePost",
               () => {
+                api.deleteCard(item._id);
+                console.log(`Id excluído: ${item._id}`);
                 card.deleteCard();
               }
             );
@@ -59,9 +61,12 @@ const userInfo = new UserInfo({
 });
 
 api.getUser().then((userData) => {
-  //console.log(userData);
+  console.log(userData);
   userInfo.setUserInfo(userData);
+  userInfo.setUserAvatar(userData);
 });
+
+//api.setNewCard();
 
 // const initialCards = [
 //   {
@@ -102,27 +107,37 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
     () => {
       const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
         newCard.deleteCard();
+        console.log(`oooia aq maxo rei: ${data}`);
+        //TODO exclui post criado // feed
+        //api.deleteCard();
       });
       deleteForm.open();
       deleteForm.setEventListener();
     }
   );
   const newCardElement = newCard.generateCard();
+  //console.log(newCardElement);
   const feed = document.querySelector(".grid");
-  feed.prepend(newCardElement);
+  api.setNewCard(data);
+  //console.log(data);
+  feed.append(newCardElement);
+  //TODO - Recarregar feed automaticamente
   popupForm.close();
 });
 popupForm.setEventListener();
 
 const popupUser = new PopupWithForm("#popupUser", (data) => {
   userInfo.setUserInfo(data);
+  api.setNewUser(data);
   popupUser.close();
 });
 popupUser.setEventListener();
 
-//AQUI --------------------------------<
+//Popup editar avatar
 const popupAvatar = new PopupWithForm("#popupUserAvatar", (data) => {
   userInfo.setUserAvatar(data);
+  api.setNewAvatar(data);
+  console.log(`Outra data aqui paizao, avia:`, data);
   popupAvatar.close();
 });
 popupAvatar.setEventListener();

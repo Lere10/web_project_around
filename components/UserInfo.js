@@ -18,10 +18,8 @@ export default class UserInfo {
     // this._name.textContent = document.querySelector(".form__input-name").value;
     // this._bio.textContent = document.querySelector(".form__input-bio").value;
   }
-  // getUserAvatar() {}
+
   setUserAvatar(data) {
-    //const data = this.getUserInfo();
-    console.log(data);
     this._link.src = data.avatar;
   }
 }

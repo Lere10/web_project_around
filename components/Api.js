@@ -2,6 +2,7 @@ class Api {
   constructor(baseURL, method) {
     this._baseUrl = baseURL;
     this._method = method;
+    this._postMethod = `method: "POST"`;
   }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, this._method)
@@ -23,6 +24,45 @@ class Api {
       } else {
         return Promise.reject(`Vixe fella, erro ó: ${res.status}`);
       }
+    });
+  }
+  setNewUser(data) {
+    fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      ...this._method,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      }),
+    });
+  }
+  setNewAvatar(data) {
+    fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      ...this._method,
+      body: JSON.stringify({
+        avatar: data.link,
+      }),
+    });
+  }
+  setNewCard(data) {
+    fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      ...this._method,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
+    }).then((res) => {
+      console.log(`POST feito: ${res}`);
+    });
+  }
+  deleteCard(id) {
+    fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      ...this._method,
+    }).then((res) => {
+      console.log(`Delete feito: ${res}`);
     });
   }
 }

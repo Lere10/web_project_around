@@ -4,6 +4,7 @@
   justify-content: center;
 }
 .form__fieldset {
+  width: 100%;
   border: none;
   padding: 0px;
   max-width: 358px;

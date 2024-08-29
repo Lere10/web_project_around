@@ -8,6 +8,8 @@
   flex-wrap: nowrap;
 }
 .profile__info-photo-portrait {
+  display: flex;
+  justify-content: center;
   position: relative;
   max-width: 120px;
   max-height: 120px;
@@ -16,9 +18,7 @@
   margin-right: 30px;
 }
 .profile__photo {
-  width: 100%;
-  max-width: 120px;
-  max-height: 120px;
+  object-fit: contain;
 }
 .profile__edit-pencil {
   position: absolute;
