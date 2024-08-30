@@ -1,19 +1,27 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleDeleteClick) {
+  constructor(
+    data,
+    templateSelector,
+    userId,
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick
+  ) {
     this._title = data.name;
     this._image = data.link;
-    this._likeNumber = data.likes;
-    this._isLiked = false;
-    //TODO - Isliked boolean
+    //chatGPT
+    this._userId = userId;
+    this._likes = data.likes || []; // Guardar os likes no início
+    this._id = data._id; // ID do cartão
+    this._ownerId = data.owner._id; // ID do dono do cartão
+    // this._userId = null; // ID do usuário (definido depois)
+    // this._isLiked = false; // Estado inicial do like
+    //chatGPT
+    this._handleLikeClick = handleLikeClick;
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
   }
-
-  // _setLike(likes) {
-  //   this._element.querySelector(".grid__content-likeNumber").textContent =
-  //     likes;
-  // }
 
   _getTemplate() {
     const cardTemplate = document
@@ -52,43 +60,64 @@ export default class Card {
     this._handleCardClick({ name: this._title, link: this._image });
   }
 
-  _handleLike() {
+  setLike(isLiked, likesCount) {
+    this._isLiked = isLiked;
     this._likeCard = this._element.querySelector(".grid__content-like");
-    if (this._isLiked) {
-      this._likeCard.classList.remove("grid__content-like_active");
-      this._isLiked = !this._isLiked;
-      this._element.querySelector(".grid__content-likeNumber").textContent =
-        this._likeNumber.length;
-    } else {
-      this._likeCard.classList.add("grid__content-like_active");
-      this._isLiked = !this._isLiked;
-      this._element.querySelector(".grid__content-likeNumber").textContent =
-        this._likeNumber.length + 1;
-    }
 
+    if (this._isLiked) {
+      this._likeCard.classList.add("grid__content-like_active");
+    } else {
+      this._likeCard.classList.remove("grid__content-like_active");
+    }
+    this._element.querySelector(".grid__content-likeNumber").textContent =
+      likesCount;
+  }
+
+  _handleLike() {
+    //chatGPT
+    this._handleLikeClick(this._id, this._isLiked)
+      .then((updatedCard) => {
+        this.setLike(!this._isLiked, updatedCard.likes.length);
+      })
+      .catch((error) => {
+        console.log("Erro ao tentar curtir/descurtir o cartão:", error);
+      });
+
+    //chatGPT
+    // console.log("oi");
     // this._likeCard = this._element.querySelector(".grid__content-like");
-    // this._likeCard.classList.toggle("grid__content-like_active");
+    // if (this._isLiked) {
+    //   this._likeCard.classList.remove("grid__content-like_active");
+    //   this._isLiked = !this._isLiked;
+    // } else {
+    //   this._likeCard.classList.add("grid__content-like_active");
+    //   this._isLiked = !this._isLiked;
+    // }
   }
 
   deleteCard() {
     this._element.remove();
   }
 
-  removeDeleteIcon() {
+  addDeleteIcon() {
     this._element
       .querySelector(".grid__delete-button")
       .classList.add("grid__delete-button_show");
   }
 
-  generateCard(likes) {
+  generateCard(data) {
     this._element = this._getTemplate();
     this._element.querySelector(".grid__box-portrait-photo").src = this._image;
     this._element.querySelector(".grid__box-portrait-photo").alt = this._title;
     this._element.querySelector(".grid__content-title").textContent =
       this._title;
-    //this._setLike(this._likeNumber.length);
-    this._element.querySelector(".grid__content-likeNumber").textContent =
-      likes;
+
+    //chatGPT
+    const hasOwnLike = this._likes.some((like) => like._id === this._userId);
+    this.setLike(hasOwnLike, this._likes.length);
+
+    // this._element.querySelector(".grid__content-likeNumber").textContent =
+    //   data.likes.length;
 
     this._setEventListeners();
 

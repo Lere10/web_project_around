@@ -1,11 +1,11 @@
-class Api {
-  constructor(baseURL, method) {
+export default class Api {
+  constructor(baseURL, options) {
     this._baseUrl = baseURL;
-    this._method = method;
-    this._postMethod = `method: "POST"`;
+    this._options = options;
+    //this._like = callbackLike;
   }
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, this._method)
+    return fetch(`${this._baseUrl}/cards`, this._options)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -17,8 +17,9 @@ class Api {
         console.log(`Vix paizao, deu ruim ó: ${error}`);
       });
   }
+
   getUser() {
-    return fetch(`${this._baseUrl}/users/me`, this._method).then((res) => {
+    return fetch(`${this._baseUrl}/users/me`, this._options).then((res) => {
       if (res.ok) {
         return res.json();
       } else {
@@ -29,7 +30,7 @@ class Api {
   setNewUser(data) {
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      ...this._method,
+      ...this._options,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -37,41 +38,69 @@ class Api {
     });
   }
   setNewAvatar(data) {
-    fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      ...this._method,
+      ...this._options,
       body: JSON.stringify({
         avatar: data.link,
       }),
     });
   }
   setNewCard(data) {
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      ...this._method,
+      ...this._options,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
       }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Post não enviado corretamente: ${res.status}`);
+        }
+      })
+      .catch((error) => {
+        console.log(`Vix paizão, deu ruim ó: ${error}`);
+      });
+  }
+
+  apiLike(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: "PUT",
+      ...this._options,
     }).then((res) => {
-      console.log(`POST feito: ${res}`);
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Erro de like: ${res.status}`);
+      }
     });
   }
+  apiDislike(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: "DELETE",
+      ...this._options,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Erro de dislike: ${res.status}`);
+      }
+    });
+  }
+  //apidislike
+  //apilike
+  //callback
+
   deleteCard(id) {
     fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
-      ...this._method,
+      ...this._options,
     }).then((res) => {
       console.log(`Delete feito: ${res}`);
     });
   }
 }
-
-const api = new Api(`https://around.nomoreparties.co/v1/web-ptbr-cohort-12`, {
-  headers: {
-    authorization: "c5f89901-0404-4ab2-ab83-c8e3c6dc51b4",
-    "Content-Type": "application/json",
-  },
-});
-
-export default api;
