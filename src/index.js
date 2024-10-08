@@ -56,47 +56,24 @@ api.getUser().then((userData) => {
               deleteForm.setEventListener();
             },
             () => {
-              //chatGPT
+              //Voltar aqui quando conseguir setar um like
               const hasOwnLike = item.likes.some((like) => {
-                like._id === userId;
+                return like._id === userId;
               });
               if (hasOwnLike) {
-                return api.apiDislike(item._id).then((updatedCard) => {
+                return api.apiDislike(card._id).then((updatedCard) => {
                   card.setLike(false, updatedCard.likes.length);
                   item.likes = updatedCard.likes;
                 });
               } else {
-                return api.apiLike().then((updatedCard) => {
+                return api.apiLike(card._id).then((updatedCard) => {
                   card.setLike(true, updatedCard.likes.length);
                   item.likes = updatedCard.likes;
                 });
               }
-              // api.getUser().then((userData) => {
-              //   const hasOwnLike = item.likes.some((id) => {
-              //     id === userData._id;
-              //   });
-              //   if (hasOwnLike) {
-              //     api.apiDislike(item._id).then((updatedCard) => {
-              //       card.setLike(false);
-              //       item.likes = updatedCard.likes;
-              //     });
-              //   } else {
-              //     api.apiLike(item._id).then((updatedCard) => {
-              //       card.setLike(true);
-              //       item.likes = updatedCard.likes;
-              //     });
-              //   }
-              // });
             }
           );
-          //const hasOwnLike = item.likes.find((id) => {
-          //   id === userData._id;
-          // });
-          // if (hasOwnLike) {
-          //   card.setLike(true);
-          // }
 
-          //---------------------------------------------
           api.getUser().then((userData) => {
             if (userData._id === item.owner._id) {
               card.addDeleteIcon();
@@ -106,6 +83,7 @@ api.getUser().then((userData) => {
           const cardElement = card.generateCard(item);
           section.addItem(cardElement);
         },
+        // instancia card
       },
       ".grid"
     );
@@ -114,91 +92,6 @@ api.getUser().then((userData) => {
 });
 
 //chatGPTilson
-
-// api.getInitialCards().then((initialCards) => {
-//   console.log(`Cards criados: `, initialCards);
-//   const section = new Section(
-//     {
-//       items: initialCards,
-//       renderer: (item) => {
-//         const card = new Card(
-//           item,
-//           "#grid",
-//           userId,
-//           (data) => {
-//             const popupWithImage = new PopupWithImage(".grid__display");
-//             popupWithImage.open(data);
-//             popupWithImage.setEventListener();
-//           },
-//           () => {
-//             const deleteForm = new PopupWithConfirmation(
-//               "#popupDeletePost",
-//               () => {
-//                 api.deleteCard(item._id);
-//                 console.log(`Id excluído: ${item._id}`);
-//                 card.deleteCard();
-//               }
-//             );
-
-//             deleteForm.open();
-//             deleteForm.setEventListener();
-//           },
-//           () => {
-//             //chatGPT
-//             const hasOwnLike = item.likes.some((like) => {
-//               like._id === userId;
-//             });
-//             if (hasOwnLike) {
-//               api.apiDislike(item._id).then((updatedCard) => {
-//                 card.setLike(false, updatedCard.likes.length);
-//                 item.likes = updatedCard.likes;
-//               });
-//             } else {
-//               api.apiLike().then((updatedCard) => {
-//                 card.setLike(true, updatedCard.likes.length);
-//                 item.likes = updatedCard.likes;
-//               });
-//             }
-//             // api.getUser().then((userData) => {
-//             //   const hasOwnLike = item.likes.some((id) => {
-//             //     id === userData._id;
-//             //   });
-//             //   if (hasOwnLike) {
-//             //     api.apiDislike(item._id).then((updatedCard) => {
-//             //       card.setLike(false);
-//             //       item.likes = updatedCard.likes;
-//             //     });
-//             //   } else {
-//             //     api.apiLike(item._id).then((updatedCard) => {
-//             //       card.setLike(true);
-//             //       item.likes = updatedCard.likes;
-//             //     });
-//             //   }
-//             // });
-//           }
-//         );
-//         //const hasOwnLike = item.likes.find((id) => {
-//         //   id === userData._id;
-//         // });
-//         // if (hasOwnLike) {
-//         //   card.setLike(true);
-//         // }
-
-//         //---------------------------------------------
-//         api.getUser().then((userData) => {
-//           if (userData._id === item.owner._id) {
-//             card.addDeleteIcon();
-//           }
-//         });
-
-//         const cardElement = card.generateCard(item);
-//         section.addItem(cardElement);
-//       },
-//     },
-//     ".grid"
-//   );
-//   section.renderer();
-// });
 
 const userInfo = new UserInfo({
   name: ".profile__info-name",
@@ -217,50 +110,55 @@ api
 //api.setNewCard();---------------------------------------------<><><>
 
 const popupForm = new PopupWithForm("#popupPost", (data) => {
-  //inicio instancia card
-  const newCard = new Card(
-    data,
-    "#grid",
-    (data) => {
-      const popupWithImage = new PopupWithImage(".grid__display");
-      popupWithImage.open(data);
-      popupWithImage.setEventListener();
-    },
-    () => {
-      const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
-        newCard.deleteCard();
-        console.log(`oooia aq maxo rei: ${data}`);
-      });
-      deleteForm.open();
-      deleteForm.setEventListener();
-    },
-    () => {
-      api.getUser().then((userData) => {
-        const hasOwnLike = item.likes.some((id) => {
-          id === userData._id;
+  api.getUser().then((userData) => {
+    const userId = userData._id;
+    //inicio instancia card
+    const newCard = new Card(
+      data,
+      "#grid",
+      userId,
+      (data) => {
+        console.log(data);
+        const popupWithImage = new PopupWithImage(".grid__display");
+        popupWithImage.open(data);
+        popupWithImage.setEventListener();
+      },
+      () => {
+        const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
+          newCard.deleteCard();
+          console.log(`oooia aq maxo rei: ${data}`);
         });
-        if (hasOwnLike) {
-          api.apiDislike(item._id).then((updatedCard) => {
-            card.setLike(false, updatedCard.likes.length);
-            item.likes = updatedCard.likes;
+        deleteForm.open();
+        deleteForm.setEventListener();
+      },
+      () => {
+        api.getUser().then((userData) => {
+          const hasOwnLike = data.likes.some((id) => {
+            return id === userData._id;
           });
-        } else {
-          api.apiLike(item._id).then((updatedCard) => {
-            card.setLike(true, updatedCard.likes.length);
-            item.likes = updatedCard.likes;
-          });
-        }
-      });
-    }
-  );
-  //fim da instancia card
-
-  const feed = document.querySelector(".grid");
-  api.setNewCard(data).then((card) => {
-    const newCardElement = newCard.generateCard(card);
-    feed.append(newCardElement);
-    //AQUI QUE A MÁGICA ACONTECE -<
+          if (hasOwnLike) {
+            api.apiDislike(newCard._id).then((updatedCard) => {
+              newCard.setLike(false, updatedCard.likes.length);
+              data.likes = updatedCard.likes;
+            });
+          } else {
+            api.apiLike(newCard._id).then((updatedCard) => {
+              newCard.setLike(true, updatedCard.likes.length);
+              data.likes = updatedCard.likes;
+            });
+          }
+        });
+      }
+    );
+    //fim da instancia card
+    const feed = document.querySelector(".grid");
+    api.setNewCard(data).then((card) => {
+      const newCardElement = newCard.generateCard(card);
+      feed.append(newCardElement);
+      //AQUI QUE A MÁGICA ACONTECE -<
+    });
   });
+
   popupForm.close();
 });
 popupForm.setEventListener();

@@ -13,7 +13,7 @@ export default class Card {
     this._userId = userId;
     this._likes = data.likes || []; // Guardar os likes no início
     this._id = data._id; // ID do cartão
-    this._ownerId = data.owner._id; // ID do dono do cartão
+    //this._ownerId = data.owner._id; // ID do dono do cartão
     // this._userId = null; // ID do usuário (definido depois)
     // this._isLiked = false; // Estado inicial do like
     //chatGPT
@@ -75,6 +75,7 @@ export default class Card {
 
   _handleLike() {
     //chatGPT
+    console.log(this._id);
     this._handleLikeClick(this._id, this._isLiked)
       .then((updatedCard) => {
         this.setLike(!this._isLiked, updatedCard.likes.length);

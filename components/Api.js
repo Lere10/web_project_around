@@ -23,7 +23,7 @@ export default class Api {
       if (res.ok) {
         return res.json();
       } else {
-        return Promise.reject(`Vixe fella, erro ó: ${res.status}`);
+        return Promise.reject(`Vixe amigo, erro ó: ${res.status}`);
       }
     });
   }
