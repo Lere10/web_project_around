@@ -61,15 +61,9 @@ api.getUser().then((userData) => {
                 return like._id === userId;
               });
               if (hasOwnLike) {
-                return api.apiDislike(card._id).then((updatedCard) => {
-                  card.setLike(false, updatedCard.likes.length);
-                  item.likes = updatedCard.likes;
-                });
+                return api.apiDislike(card._id);
               } else {
-                return api.apiLike(card._id).then((updatedCard) => {
-                  card.setLike(true, updatedCard.likes.length);
-                  item.likes = updatedCard.likes;
-                });
+                return api.apiLike(card._id);
               }
             }
           );

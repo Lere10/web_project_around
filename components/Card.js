@@ -74,17 +74,13 @@ export default class Card {
   }
 
   _handleLike() {
-    //chatGPT
-    console.log(this._id);
     this._handleLikeClick(this._id, this._isLiked)
       .then((updatedCard) => {
         this.setLike(!this._isLiked, updatedCard.likes.length);
       })
       .catch((error) => {
-        console.log("Erro ao tentar curtir/descurtir o cartão:", error);
+        console.log("Erro de likes: ", error);
       });
-
-    //chatGPT
     // console.log("oi");
     // this._likeCard = this._element.querySelector(".grid__content-like");
     // if (this._isLiked) {
