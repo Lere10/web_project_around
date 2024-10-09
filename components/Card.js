@@ -81,15 +81,6 @@ export default class Card {
       .catch((error) => {
         console.log("Erro de likes: ", error);
       });
-    // console.log("oi");
-    // this._likeCard = this._element.querySelector(".grid__content-like");
-    // if (this._isLiked) {
-    //   this._likeCard.classList.remove("grid__content-like_active");
-    //   this._isLiked = !this._isLiked;
-    // } else {
-    //   this._likeCard.classList.add("grid__content-like_active");
-    //   this._isLiked = !this._isLiked;
-    // }
   }
 
   deleteCard() {

@@ -27,15 +27,15 @@ export default class PopupWithForm extends Popup {
     console.log(this._selector);
   }
 
-  isLoading() {
-    const submitButton = this._selector.querySelector(".form__button");
-    this._isLoading = !this._isLoading;
-    if (this._isLoading) {
-      submitButton.textContent = "Salvando...";
-    } else {
-      submitButton.textContent = originalButtonText;
-    }
-  }
+  // isLoading() {
+  //   const submitButton = this._selector.querySelector(".form__button");
+  //   this._isLoading = !this._isLoading;
+  //   if (this._isLoading) {
+  //     submitButton.textContent = "Salvando...";
+  //   } else {
+  //     submitButton.textContent = originalButtonText;
+  //   }
+  // }
 
   setEventListener() {
     super.setEventListener();

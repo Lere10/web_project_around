@@ -61,9 +61,15 @@ api.getUser().then((userData) => {
                 return like._id === userId;
               });
               if (hasOwnLike) {
-                return api.apiDislike(card._id);
+                return api.apiDislike(card._id).then((updatedCard) => {
+                  card.setLike(false, updatedCard.likes.length);
+                  item.likes = updatedCard.likes;
+                });
               } else {
-                return api.apiLike(card._id);
+                return api.apiLike(card._id).then((updatedCard) => {
+                  card.setLike(true, updatedCard.likes.length);
+                  item.likes = updatedCard.likes;
+                });
               }
             }
           );
@@ -146,6 +152,10 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
     const feed = document.querySelector(".grid");
     api.setNewCard(data).then((card) => {
       const newCardElement = newCard.generateCard(card);
+      console.log("newcard> ", newCardElement);
+      // api.getInitialCards().then((cards)=>{
+
+      // })
       feed.prepend(newCardElement);
     });
   });
