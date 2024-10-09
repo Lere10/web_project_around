@@ -93,13 +93,11 @@ const userInfo = new UserInfo({
   link: ".profile__photo",
 });
 
-api
-  .getUser()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-    userInfo.setUserAvatar(userData);
-  })
-  .then(() => {});
+api.getUser().then((userData) => {
+  userInfo.setUserInfo(userData);
+  userInfo.setUserAvatar(userData);
+});
+//.then(() => {});
 
 //api.setNewCard();---------------------------------------------<><><>
 
@@ -148,11 +146,10 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
     const feed = document.querySelector(".grid");
     api.setNewCard(data).then((card) => {
       const newCardElement = newCard.generateCard(card);
-      feed.append(newCardElement);
-      //AQUI QUE A MÁGICA ACONTECE -<
+      feed.prepend(newCardElement);
     });
   });
-
+  //popupForm.isLoading();
   popupForm.close();
 });
 popupForm.setEventListener();
