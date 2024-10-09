@@ -129,23 +129,23 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
         // deleteForm.setEventListener();
       },
       () => {
-        api.getUser().then((userData) => {
-          console.log(data);
-          const hasOwnLike = data.likes.some((id) => {
-            return id === userData._id;
-          });
-          if (hasOwnLike) {
-            api.apiDislike(newCard._id).then((updatedCard) => {
-              newCard.setLike(false, updatedCard.likes.length);
-              data.likes = updatedCard.likes;
-            });
-          } else {
-            api.apiLike(newCard._id).then((updatedCard) => {
-              newCard.setLike(true, updatedCard.likes.length);
-              data.likes = updatedCard.likes;
-            });
-          }
-        });
+        // api.getUser().then((userData) => {
+        //   console.log(data);
+        //   const hasOwnLike = data.likes.some((id) => {
+        //     return id === userData._id;
+        //   });
+        //   if (hasOwnLike) {
+        //     api.apiDislike(newCard._id).then((updatedCard) => {
+        //       newCard.setLike(false, updatedCard.likes.length);
+        //       data.likes = updatedCard.likes;
+        //     });
+        //   } else {
+        //     api.apiLike(newCard._id).then((updatedCard) => {
+        //       newCard.setLike(true, updatedCard.likes.length);
+        //       data.likes = updatedCard.likes;
+        //     });
+        //   }
+        // });
       }
       //acaba aqui o callback de like ----------------
     );
@@ -163,13 +163,27 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
         deleteForm.setEventListener();
       };
 
-      // newCard._handleLikeClick = () => {
-      //   const hasOwnLike = newCard._likes.some((like) => {
-      //     return like._id === userId;
-      //   });
-      //   console.log("userID: ", userId);
-      //   console.log("hasownlike: ", hasOwnLike);
-      // };
+      //likeStart
+      newCard._handleLikeClick = () => {
+        const hasOwnLike = card.likes.some((like) => {
+          return like._id === userId;
+        });
+        console.log(hasOwnLike);
+        if (hasOwnLike) {
+          return api.apiDislike(newCard._id).then((updatedCard) => {
+            newCard.setLike(false, updatedCard.likes.length);
+            card.likes = updatedCard.likes;
+          });
+        } else {
+          return api.apiLike(newCard._id).then((updatedCard) => {
+            newCard.setLike(true, updatedCard.likes.length);
+            card.likes = updatedCard.likes;
+          });
+        }
+        console.log("newCardLike: ", newCard);
+        console.log("CardLike:", card);
+      };
+      //likeEnd
 
       const newCardElement = newCard.generateCard(card);
       api.getUser().then((userData) => {
