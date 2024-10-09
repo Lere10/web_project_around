@@ -116,21 +116,21 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
       "#grid",
       userId,
       (data) => {
-        console.log(data);
         const popupWithImage = new PopupWithImage(".grid__display");
         popupWithImage.open(data);
         popupWithImage.setEventListener();
       },
       () => {
-        const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
-          newCard.deleteCard();
-          console.log(`oooia aq maxo rei: ${data}`);
-        });
-        deleteForm.open();
-        deleteForm.setEventListener();
+        // const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
+        //   newCard.deleteCard();
+        //   console.log(`newCard deletado: ${data}`);
+        // });
+        // deleteForm.open();
+        // deleteForm.setEventListener();
       },
       () => {
         api.getUser().then((userData) => {
+          console.log(data);
           const hasOwnLike = data.likes.some((id) => {
             return id === userData._id;
           });
@@ -147,15 +147,37 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
           }
         });
       }
+      //acaba aqui o callback de like ----------------
     );
     //fim da instancia card
     const feed = document.querySelector(".grid");
     api.setNewCard(data).then((card) => {
-      const newCardElement = newCard.generateCard(card);
-      console.log("newcard> ", newCardElement);
-      // api.getInitialCards().then((cards)=>{
+      newCard._id = card._id;
+      console.log(newCard);
+      newCard._handleDeleteClick = () => {
+        const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
+          api.deleteCard(newCard._id);
+          newCard.deleteCard();
+        });
+        deleteForm.open();
+        deleteForm.setEventListener();
+      };
 
-      // })
+      // newCard._handleLikeClick = () => {
+      //   const hasOwnLike = newCard._likes.some((like) => {
+      //     return like._id === userId;
+      //   });
+      //   console.log("userID: ", userId);
+      //   console.log("hasownlike: ", hasOwnLike);
+      // };
+
+      const newCardElement = newCard.generateCard(card);
+      api.getUser().then((userData) => {
+        if (userData._id === card.owner._id) {
+          newCard.addDeleteIcon();
+        }
+      });
+
       feed.prepend(newCardElement);
     });
   });
