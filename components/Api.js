@@ -91,9 +91,6 @@ export default class Api {
       }
     });
   }
-  //apidislike
-  //apilike
-  //callback
 
   deleteCard(id) {
     fetch(`${this._baseUrl}/cards/${id}`, {

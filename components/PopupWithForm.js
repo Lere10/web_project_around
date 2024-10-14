@@ -40,7 +40,6 @@ export default class PopupWithForm extends Popup {
   setEventListener() {
     super.setEventListener();
     this._selector.querySelector(".form").addEventListener("submit", (evt) => {
-      //buscar só o carregamento da página?
       evt.preventDefault();
       const data = this._getInputValues();
       this._callback(data);

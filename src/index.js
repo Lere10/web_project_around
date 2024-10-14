@@ -47,7 +47,6 @@ api.getUser().then((userData) => {
                 "#popupDeletePost",
                 () => {
                   api.deleteCard(item._id);
-                  console.log(`Id excluído: ${item._id}`);
                   card.deleteCard();
                 }
               );
@@ -120,40 +119,14 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
         popupWithImage.open(data);
         popupWithImage.setEventListener();
       },
-      () => {
-        // const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
-        //   newCard.deleteCard();
-        //   console.log(`newCard deletado: ${data}`);
-        // });
-        // deleteForm.open();
-        // deleteForm.setEventListener();
-      },
-      () => {
-        // api.getUser().then((userData) => {
-        //   console.log(data);
-        //   const hasOwnLike = data.likes.some((id) => {
-        //     return id === userData._id;
-        //   });
-        //   if (hasOwnLike) {
-        //     api.apiDislike(newCard._id).then((updatedCard) => {
-        //       newCard.setLike(false, updatedCard.likes.length);
-        //       data.likes = updatedCard.likes;
-        //     });
-        //   } else {
-        //     api.apiLike(newCard._id).then((updatedCard) => {
-        //       newCard.setLike(true, updatedCard.likes.length);
-        //       data.likes = updatedCard.likes;
-        //     });
-        //   }
-        // });
-      }
+      () => {},
+      () => {}
       //acaba aqui o callback de like ----------------
     );
     //fim da instancia card
     const feed = document.querySelector(".grid");
     api.setNewCard(data).then((card) => {
       newCard._id = card._id;
-      console.log(newCard);
       newCard._handleDeleteClick = () => {
         const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
           api.deleteCard(newCard._id);
@@ -168,7 +141,6 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
         const hasOwnLike = card.likes.some((like) => {
           return like._id === userId;
         });
-        console.log(hasOwnLike);
         if (hasOwnLike) {
           return api.apiDislike(newCard._id).then((updatedCard) => {
             newCard.setLike(false, updatedCard.likes.length);
@@ -180,8 +152,6 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
             card.likes = updatedCard.likes;
           });
         }
-        console.log("newCardLike: ", newCard);
-        console.log("CardLike:", card);
       };
       //likeEnd
 

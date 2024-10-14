@@ -78,8 +78,9 @@ export default class Card {
       .then((updatedCard) => {
         this.setLike(!this._isLiked, updatedCard.likes.length);
       })
-      .catch((error) => {
-        console.log("Erro de likes: ", error);
+      .catch(() => {
+        //Talvez algo aqui não esteja certo pq UpdatedCard é undefined,
+        //mas vejo isso dps e apenas se necessário
       });
   }
 
