@@ -126,6 +126,7 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
     //fim da instancia card
     const feed = document.querySelector(".grid");
     api.setNewCard(data).then((card) => {
+      //popupForm.isLoading();
       newCard._id = card._id;
       newCard._handleDeleteClick = () => {
         const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
@@ -163,10 +164,10 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
       });
 
       feed.prepend(newCardElement);
+      popupForm.close();
+      popupForm.isLoading("Salvar");
     });
   });
-  //popupForm.isLoading();
-  popupForm.close();
 });
 popupForm.setEventListener();
 

@@ -5,8 +5,6 @@ export default class PopupWithForm extends Popup {
     super(selector);
     this._callback = callback;
     this._isLoading = false;
-    this._originalButtonText =
-      this._selector.querySelector(".form__button").textContent;
   }
   _getInputValues() {
     return {
@@ -27,15 +25,15 @@ export default class PopupWithForm extends Popup {
     console.log(this._selector);
   }
 
-  // isLoading() {
-  //   const submitButton = this._selector.querySelector(".form__button");
-  //   this._isLoading = !this._isLoading;
-  //   if (this._isLoading) {
-  //     submitButton.textContent = "Salvando...";
-  //   } else {
-  //     submitButton.textContent = originalButtonText;
-  //   }
-  // }
+  isLoading(message) {
+    const submitButton = this._selector.querySelector(".form__button");
+    this._isLoading = !this._isLoading;
+    if (this._isLoading) {
+      submitButton.textContent = "Salvando...";
+    } else {
+      submitButton.textContent = message;
+    }
+  }
 
   setEventListener() {
     super.setEventListener();
@@ -43,6 +41,7 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       const data = this._getInputValues();
       this._callback(data);
+      this.isLoading("Salvar");
     });
   }
 }
