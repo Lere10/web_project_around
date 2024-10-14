@@ -165,7 +165,7 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
 
       feed.prepend(newCardElement);
       popupForm.close();
-      popupForm.isLoading("Salvar");
+      popupForm.isLoading("Crie");
     });
   });
 });
@@ -175,6 +175,7 @@ const popupUser = new PopupWithForm("#popupUser", (data) => {
   userInfo.setUserInfo(data);
   api.setNewUser(data);
   popupUser.close();
+  popupUser.isLoading("Salvar");
 });
 popupUser.setEventListener();
 
@@ -183,6 +184,7 @@ const popupAvatar = new PopupWithForm("#popupUserAvatar", (data) => {
   userInfo.setUserAvatar(data);
   api.setNewAvatar(data);
   popupAvatar.close();
+  popupAvatar.isLoading("Salvar");
 });
 popupAvatar.setEventListener();
 
