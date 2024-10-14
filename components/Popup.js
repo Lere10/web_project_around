@@ -3,7 +3,7 @@ export default class Popup {
     this._selector = document.querySelector(popupSelector);
     this.open = this.open.bind(this);
     if (!this._selector) {
-      console.log("erro no seletor passado");
+      console.log("Erro no seletor passado");
     }
   }
   open() {

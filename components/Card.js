@@ -9,14 +9,10 @@ export default class Card {
   ) {
     this._title = data.name;
     this._image = data.link;
-    //chatGPT
+
     this._userId = userId;
-    this._likes = data.likes || []; // Guardar os likes no início
-    this._id = data._id; // ID do cartão
-    //this._ownerId = data.owner._id; // ID do dono do cartão
-    // this._userId = null; // ID do usuário (definido depois)
-    // this._isLiked = false; // Estado inicial do like
-    //chatGPT
+    this._likes = data.likes || [];
+    this._id = data._id;
     this._handleLikeClick = handleLikeClick;
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -78,10 +74,7 @@ export default class Card {
       .then((updatedCard) => {
         this.setLike(!this._isLiked, updatedCard.likes.length);
       })
-      .catch(() => {
-        //Talvez algo aqui não esteja certo pq UpdatedCard é undefined,
-        //mas vejo isso dps e apenas se necessário
-      });
+      .catch(() => {});
   }
 
   deleteCard() {
@@ -94,19 +87,15 @@ export default class Card {
       .classList.add("grid__delete-button_show");
   }
 
-  generateCard(data) {
+  generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector(".grid__box-portrait-photo").src = this._image;
     this._element.querySelector(".grid__box-portrait-photo").alt = this._title;
     this._element.querySelector(".grid__content-title").textContent =
       this._title;
 
-    //chatGPT
     const hasOwnLike = this._likes.some((like) => like._id === this._userId);
     this.setLike(hasOwnLike, this._likes.length);
-
-    // this._element.querySelector(".grid__content-likeNumber").textContent =
-    //   data.likes.length;
 
     this._setEventListeners();
 

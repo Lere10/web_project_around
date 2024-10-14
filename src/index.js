@@ -24,11 +24,9 @@ const addPostButton = profile.querySelector(".profile__button-add-post");
 const buttonOpenForm = profile.querySelector(".profile__button-open-form");
 const editAvatarButton = profile.querySelector(".profile__edit-pencil");
 
-//chatGPTilson
 api.getUser().then((userData) => {
   const userId = userData._id;
   api.getInitialCards().then((initialCards) => {
-    console.log(`Cards criados: `, initialCards);
     const section = new Section(
       {
         items: initialCards,
@@ -55,7 +53,6 @@ api.getUser().then((userData) => {
               deleteForm.setEventListener();
             },
             () => {
-              //Voltar aqui quando conseguir setar um like
               const hasOwnLike = item.likes.some((like) => {
                 return like._id === userId;
               });
@@ -82,15 +79,12 @@ api.getUser().then((userData) => {
           const cardElement = card.generateCard(item);
           section.addItem(cardElement);
         },
-        // instancia card
       },
       ".grid"
     );
     section.renderer();
   });
 });
-
-//chatGPTilson
 
 const userInfo = new UserInfo({
   name: ".profile__info-name",
@@ -102,14 +96,11 @@ api.getUser().then((userData) => {
   userInfo.setUserInfo(userData);
   userInfo.setUserAvatar(userData);
 });
-//.then(() => {});
-
-//api.setNewCard();---------------------------------------------<><><>
 
 const popupForm = new PopupWithForm("#popupPost", (data) => {
   api.getUser().then((userData) => {
     const userId = userData._id;
-    //inicio instancia card
+
     const newCard = new Card(
       data,
       "#grid",
@@ -121,12 +112,9 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
       },
       () => {},
       () => {}
-      //acaba aqui o callback de like ----------------
     );
-    //fim da instancia card
     const feed = document.querySelector(".grid");
     api.setNewCard(data).then((card) => {
-      //popupForm.isLoading();
       newCard._id = card._id;
       newCard._handleDeleteClick = () => {
         const deleteForm = new PopupWithConfirmation("#popupDeletePost", () => {
@@ -137,7 +125,6 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
         deleteForm.setEventListener();
       };
 
-      //likeStart
       newCard._handleLikeClick = () => {
         const hasOwnLike = card.likes.some((like) => {
           return like._id === userId;
@@ -154,7 +141,6 @@ const popupForm = new PopupWithForm("#popupPost", (data) => {
           });
         }
       };
-      //likeEnd
 
       const newCardElement = newCard.generateCard(card);
       api.getUser().then((userData) => {
@@ -179,7 +165,6 @@ const popupUser = new PopupWithForm("#popupUser", (data) => {
 });
 popupUser.setEventListener();
 
-//Popup editar avatar
 const popupAvatar = new PopupWithForm("#popupUserAvatar", (data) => {
   userInfo.setUserAvatar(data);
   api.setNewAvatar(data);

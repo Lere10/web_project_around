@@ -63,7 +63,7 @@ export default class Api {
         }
       })
       .catch((error) => {
-        console.log(`Vix paizão, deu ruim ó: ${error}`);
+        console.log(`Erro ao enviar novo Card: ${error}`);
       });
   }
 
