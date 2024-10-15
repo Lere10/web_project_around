@@ -61,6 +61,7 @@
 .grid__box-portrait-photo {
   width: 100%;
   height: 282px;
+  object-fit: cover;
 }
 .grid__content {
   display: flex;
@@ -79,7 +80,6 @@
 }
 .grid__content-like {
   margin: 0px;
-  padding-left: 3px;
   max-width: 21px;
   width: 100%;
 }
