@@ -2,7 +2,6 @@ export default class Api {
   constructor(baseURL, options) {
     this._baseUrl = baseURL;
     this._options = options;
-    //this._like = callbackLike;
   }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, this._options)
