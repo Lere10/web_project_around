@@ -1,7 +1,6 @@
 # Tripleten web_project_around
 
-Sprint7
-Aplicação web de perfil de rede social para compartilhamento de fotos. Os recursos implementados foram o HTML e CSS, e também a aplicação de Javascript com módulos e classes para as funcionalidades de "editar perfil", "Criar postagem" e Validação de formulário.
+Aplicação web de perfil de rede social para compartilhamento de fotos. Implementado, e também a aplicação de Javascript com módulos e classes para as funcionalidades de "editar perfil", "Criar postagem" e Validação de formulário.
 
 GitHub Page: https://lere10.github.io/web_project_around/
 
